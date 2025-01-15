@@ -1,10 +1,13 @@
 import java.util.Scanner;
+import Doopies.List.*;
 
 public class Doopies {
     private static final String LINE = "_".repeat(60);
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        MyList myList = new MyList();
+
         String intro = String.format("""
                 %s
                 Hello! I'm Doopies
@@ -29,10 +32,13 @@ public class Doopies {
             if (in.equalsIgnoreCase("bye")) {
                 System.out.println(end);
                 break;
-            } else {
+            } else if (in.equalsIgnoreCase("list")) {
+                System.out.println(myList);
+            }else {
+                myList = myList.add(in);
                 System.out.printf("""
                                 %s
-                                %s
+                                added: %s
                                 %s
                                 %n""",
                         LINE,
