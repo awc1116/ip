@@ -28,22 +28,49 @@ public class Doopies {
         System.out.println(intro);
 
         while (true) {
-            String in = sc.nextLine();
-            if (in.equalsIgnoreCase("bye")) {
+            String[] line = sc.nextLine().split(" ");
+            if (line[0].equalsIgnoreCase("bye")) {
                 System.out.println(end);
                 break;
-            } else if (in.equalsIgnoreCase("list")) {
+            } else if (line[0].equalsIgnoreCase("list")) {
                 System.out.println(myList);
-            }else {
-                myList = myList.add(in);
-                System.out.printf("""
-                                %s
-                                added: %s
-                                %s
-                                %n""",
+            } else if (line[0].equalsIgnoreCase("mark")) {
+                int idx = Integer.parseInt(line[1]);
+                myList = myList.mark(idx);
+                String res = String.format("""
+                        %s
+                        Alright! I've marked this task as done:
+                        \t%s
+                        %s
+                        """,
                         LINE,
-                        in,
+                        myList.getTask(idx),
                         LINE);
+                System.out.println(res);
+            } else if (line[0].equalsIgnoreCase("unmark")) {
+                int idx = Integer.parseInt(line[1]);
+                myList = myList.unmark(idx);
+                String res = String.format("""
+                        %s
+                        Alright! I've marked this task as not done yet:
+                        \t%s
+                        %s
+                        """,
+                        LINE,
+                        myList.getTask(idx),
+                        LINE);
+                System.out.println(res);
+            } else {
+                myList = myList.add(new Task(String.join(" ", line)));
+                String res = String.format("""
+                        %s
+                        added: %s
+                        %s
+                        """,
+                        LINE,
+                        String.join(" ", line),
+                        LINE);
+                System.out.println(res);
             }
         }
         sc.close();
