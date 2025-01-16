@@ -1,26 +1,22 @@
-package Doopies.List;
+package Doopies.notebook;
 
-public class Task {
-    private final String task;
+abstract class Task {
+    protected final String task;
     private final boolean done;
 
-    public Task(String task) {
+    Task(String task) {
         this.task = task;
         this.done = false;
     }
 
-    private Task(String task, boolean done) {
+    Task(String task, boolean done) {
         this.task = task;
         this.done = done;
     }
 
-    public Task mark() {
-        return new Task(this.task, true);
-    }
+    abstract Task mark();
 
-    public Task unmark() {
-        return new Task(this.task, false);
-    }
+    abstract Task unmark();
 
     @Override
     public String toString() {
