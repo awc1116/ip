@@ -34,6 +34,13 @@ public class Notebook {
         return new Notebook(newList.stream().toList());
     }
 
+    public Notebook delete(int idx) {
+        idx -= 1;
+        List<Task> newList = new ArrayList<Task>(this.list);
+        newList.remove(idx);
+        return new Notebook(newList.stream().toList());
+    }
+
     public Task getTask(int idx) {
         idx -= 1;
         return this.list.get(idx);

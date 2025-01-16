@@ -1,6 +1,6 @@
 package Doopies.notebook;
 
-abstract class Task {
+public abstract class Task {
     protected final String task;
     private final boolean done;
 

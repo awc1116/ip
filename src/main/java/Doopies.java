@@ -82,6 +82,29 @@ public class Doopies {
                             noteBook.getTask(idx),
                             LINE);
                     System.out.println(res);
+                } else if (cmd[0].equalsIgnoreCase("delete")) {
+                    int idx = Integer.parseInt(cmd[1]);
+
+                    if (idx > noteBook.size() || idx < 1) {
+                        throw new IndexOutOfBoundException(String
+                                .format("%d is not in your list.", idx));
+                    }
+
+                    Task task = noteBook.getTask(idx);
+                    noteBook = noteBook.delete(idx);
+
+                    String res = String.format("""
+                            %s
+                            Noted. I've removed this task:
+                            \t%s
+                            Now you have %d tasks in the list.
+                            %s
+                            """,
+                            LINE,
+                            task,
+                            noteBook.size(),
+                            LINE);
+                    System.out.println(res);
                 } else {
                     String instruction = String.join(" ",
                             Arrays.copyOfRange(cmd, 1, cmd.length));
