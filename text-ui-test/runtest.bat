@@ -30,7 +30,7 @@ for /f "tokens=* delims=" %%a in (EXPECTED.TXT) do echo %%a >> EXPECTED_NORMALIZ
 
 REM Compare the normalized output
 echo Comparing output...
-FC ACTUAL_NORMALIZED.TXT EXPECTED_NORMALIZED.TXT > diff.txt
+diff ACTUAL_NORMALIZED.TXT EXPECTED_NORMALIZED.TXT > diff.txt
 IF ERRORLEVEL 1 (
     echo ********** TEST FAILURE **********
     echo Differences found between ACTUAL.TXT and EXPECTED.TXT:

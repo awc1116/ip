@@ -10,20 +10,28 @@ public class Event extends Task {
         this.end = end;
     }
 
-    private Event(String task, boolean done, String start, String end) {
+    public Event(String task, boolean done, String start, String end) {
         super(task, done);
         this.start = start;
         this.end = end;
     }
 
+    public String getStart() {
+        return this.start;
+    }
+
+    public String getEnd() {
+        return this.end;
+    }
+
     @Override
     public Event mark() {
-        return new Event(super.task, true, this.start, this.end);
+        return new Event(this.getTask(), true, this.start, this.end);
     }
 
     @Override
     public Event unmark() {
-        return new Event(super.task, false, this.start, this.end);
+        return new Event(this.getTask(), false, this.start, this.end);
     }
 
     @Override

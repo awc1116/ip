@@ -1,7 +1,7 @@
 package Doopies.notebook;
 
 public abstract class Task {
-    protected final String task;
+    private final String task;
     private final boolean done;
 
     Task(String task) {
@@ -12,6 +12,14 @@ public abstract class Task {
     Task(String task, boolean done) {
         this.task = task;
         this.done = done;
+    }
+
+    public boolean isDone() {
+        return this.done;
+    }
+
+    public String getTask() {
+        return this.task;
     }
 
     abstract Task mark();

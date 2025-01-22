@@ -10,7 +10,7 @@ public class Notebook {
         this.list = List.<Task>of();
     }
 
-    private Notebook(List<Task> list) {
+    public Notebook(List<Task> list) {
         this.list = list;
     }
 
@@ -48,6 +48,10 @@ public class Notebook {
 
     public int size() {
         return this.list.size();
+    }
+
+    public List<Task> getAllTasks() {
+        return this.list;
     }
 
     @Override
