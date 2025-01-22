@@ -41,7 +41,7 @@ public class Doopies {
 
         while (true) {
             try {
-                String[] line = sc.nextLine().split("/");
+                String[] line = sc.nextLine().split(" /");
                 String[] cmd = line[0].split(" ");
 
                 if (cmd[0].equalsIgnoreCase("bye")
@@ -136,9 +136,7 @@ public class Doopies {
 
                         try {
                             String[] temp = line[1].split(" ");
-                            String dueDate = String.format("by: %s",
-                                    String.join(" ",
-                                            Arrays.copyOfRange(temp, 1, temp.length)));
+                            String dueDate = String.join(" ", Arrays.copyOfRange(temp, 1, temp.length)) ;
 
                             Deadline deadline = new Deadline(instruction, dueDate);
                             noteBook = noteBook.add(deadline);
@@ -156,12 +154,8 @@ public class Doopies {
                             String[] temp1 = line[1].split(" ");
                             String[] temp2 = line[2].split(" ");
 
-                            String from = String.format("from: %s",
-                                    String.join(" ",
-                                            Arrays.copyOfRange(temp1, 1, temp1.length)));
-                            String to = String.format("to: %s",
-                                    String.join(" ",
-                                            Arrays.copyOfRange(temp2, 1, temp2.length)));
+                            String from = String.join(" ", Arrays.copyOfRange(temp1, 1, temp1.length));
+                            String to = String.join(" ", Arrays.copyOfRange(temp2, 1, temp2.length));
 
                             Event event = new Event(instruction, from, to);
                             noteBook = noteBook.add(event);

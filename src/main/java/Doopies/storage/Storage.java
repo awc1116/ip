@@ -1,5 +1,6 @@
 package Doopies.storage;
 
+import Doopies.Exception.InvalidTaskTypeException;
 import Doopies.notebook.*;
 import java.io.*;
 import java.nio.file.*;
@@ -18,12 +19,12 @@ public class Storage {
             Files.createFile(this.filePath);
         }
 
-        List<Task> tasks = new ArrayList<Task>();
+        List<Task> tasks = new ArrayList<>();
         List<String> lines = Files.readAllLines(filePath);
         for (String line : lines) {
             try {
                 tasks.add(parseTask(line));
-            } catch (Exception e) {
+            } catch (InvalidTaskTypeException e) {
                 System.err.println("Skipped invalid line: " + line);
             }
         }
@@ -33,14 +34,17 @@ public class Storage {
     public void save(Notebook notebook) throws IOException {
         Files.write(this.filePath, new ArrayList<String>());
 
-        List<String> lines = new ArrayList<String>();
-        for (Task task : notebook.getAllTasks()) {
+        List<Task> tasks = new ArrayList<>(notebook.getAllTasks());
+        tasks.sort(new TaskComparator());
+
+        List<String> lines = new ArrayList<>();
+        for (Task task : tasks) {
             lines.add(serializeTask(task));
         }
         Files.write(this.filePath, lines);
     }
 
-    private Task parseTask(String line) throws Exception {
+    private Task parseTask(String line) throws InvalidTaskTypeException {
         String[] parts = line.split(" \\| ");
         String type = parts[0];
         boolean isDone = parts[1].equals("1");
@@ -50,7 +54,7 @@ public class Storage {
             case "T" -> new ToDo(description, isDone);
             case "D" -> new Deadline(description, isDone, parts[3]);
             case "E" -> new Event(description, isDone, parts[3], parts[4]);
-            default -> throw new Exception("Invalid task type");
+            default -> throw new InvalidTaskTypeException("Invalid task type");
         };
     }
 
@@ -61,7 +65,7 @@ public class Storage {
             return String.format("D | %d | %s | %s", task.isDone() ? 1 : 0, task.getTask(),
                     ((Deadline) task).getDeadline());
         } else if (task instanceof Event) {
-            return String.format("E | %d | %s | %s", task.isDone() ? 1 : 0, task.getTask(),
+            return String.format("E | %d | %s | %s | %s", task.isDone() ? 1 : 0, task.getTask(),
                     ((Event) task).getStart(), ((Event) task).getEnd());
         }
         return "";
