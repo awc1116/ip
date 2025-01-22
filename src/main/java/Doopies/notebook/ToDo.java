@@ -5,18 +5,18 @@ public class ToDo extends Task {
         super(task);
     }
 
-    private ToDo(String task, boolean done) {
+    public ToDo(String task, boolean done) {
         super(task, done);
     }
 
     @Override
     public ToDo mark() {
-        return new ToDo(super.task, true);
+        return new ToDo(this.getTask(), true);
     }
 
     @Override
     public ToDo unmark() {
-        return new ToDo(super.task, false);
+        return new ToDo(this.getTask(), false);
     }
 
     @Override

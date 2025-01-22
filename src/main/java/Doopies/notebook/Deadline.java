@@ -8,19 +8,23 @@ public class Deadline extends Task {
         this.deadline = deadline;
     }
 
-    private Deadline(String task, boolean done, String deadline) {
+    public Deadline(String task, boolean done, String deadline) {
         super(task, done);
         this.deadline = deadline;
     }
 
+    public String getDeadline() {
+        return this.deadline;
+    }
+
     @Override
     public Deadline mark() {
-        return new Deadline(super.task, true, this.deadline);
+        return new Deadline(this.getTask(), true, this.deadline);
     }
 
     @Override
     public Deadline unmark() {
-        return new Deadline(super.task, false, this.deadline);
+        return new Deadline(this.getTask(), false, this.deadline);
     }
 
     @Override

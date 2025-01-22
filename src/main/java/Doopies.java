@@ -1,34 +1,43 @@
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
 import Doopies.Exception.*;
 import Doopies.notebook.*;
+import Doopies.storage.Storage;
 
 public class Doopies {
     private static final String LINE = "_".repeat(60);
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        Notebook noteBook = new Notebook();
-
-        String intro = String.format("""
+    private static final String INTRO = String.format("""
                 %s
                 Hello! I'm Doopies
                 What can I do for you?
                 %s
                 """,
-                LINE,
-                LINE);
-
-        String end = String.format("""
+            LINE,
+            LINE);
+    private static final String END = String.format("""
                 %s
                 Bye. Hope to see you soon!
                 %s
                 """,
-                LINE,
-                LINE);
+            LINE,
+            LINE);
+    private static final String FILE_PATH = "./data/doopies.txt";
 
-        System.out.println(intro);
+    public static void main(String[] args) {
+        Storage storage = new Storage(FILE_PATH);
+        Notebook noteBook;
+
+        try {
+            noteBook = storage.load();
+        } catch (IOException e) {
+            System.out.println("Failed to load tasks. Starting with an empty notebook.");
+            noteBook = new Notebook();
+        }
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println(INTRO);
 
         while (true) {
             try {
@@ -37,7 +46,7 @@ public class Doopies {
 
                 if (cmd[0].equalsIgnoreCase("bye")
                         && cmd.length == 1) {
-                    System.out.println(end);
+                    System.out.println(END);
                     break;
                 } else if (cmd[0].equalsIgnoreCase("list")
                         && cmd.length == 1) {
@@ -168,7 +177,7 @@ public class Doopies {
                         %s
                         Got it. I've added this task:
                         \t%s
-                        Not you have %d tasks in the list.
+                        Now you have %d tasks in the list.
                         %s
                         """,
                             LINE,
@@ -177,10 +186,12 @@ public class Doopies {
                             LINE);
                     System.out.println(res);
                 }
+                storage.save(noteBook);
             } catch(UnknownCommandException
                     | IncorrectArgumentsException
                     | IndexOutOfBoundException
-                    | EmptyDescriptionException e) {
+                    | EmptyDescriptionException
+                    | IOException e) {
                 System.out.println(ErrorMessage(e.getMessage()));
             }
         }
