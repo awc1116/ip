@@ -2,6 +2,8 @@ package Doopies.storage;
 
 import Doopies.Exception.InvalidTaskTypeException;
 import Doopies.notebook.*;
+import Doopies.util.TaskComparator;
+
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;

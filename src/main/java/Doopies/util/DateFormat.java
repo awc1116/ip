@@ -1,4 +1,4 @@
-package Doopies.notebook;
+package Doopies.util;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

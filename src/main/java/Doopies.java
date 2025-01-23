@@ -1,205 +1,49 @@
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Scanner;
-
-import Doopies.Exception.*;
+import Doopies.storage.*;
 import Doopies.notebook.*;
-import Doopies.storage.Storage;
+import Doopies.userInterface.*;
+import Doopies.command.*;
+
+import java.io.IOException;
+import java.util.NoSuchElementException;
 
 public class Doopies {
-    private static final String LINE = "_".repeat(60);
-    private static final String INTRO = String.format("""
-                %s
-                Hello! I'm Doopies
-                What can I do for you?
-                %s
-                """,
-            LINE,
-            LINE);
-    private static final String END = String.format("""
-                %s
-                Bye. Hope to see you soon!
-                %s
-                """,
-            LINE,
-            LINE);
+    private final Storage storage;
+    private final Ui ui;
+    private Notebook notebook;
     private static final String FILE_PATH = "./data/doopies.txt";
 
-    public static void main(String[] args) {
-        Storage storage = new Storage(FILE_PATH);
-        Notebook noteBook;
-
+    public Doopies(String filePath) {
+        this.storage = new Storage(filePath);
+        this.ui = new Ui();
         try {
-            noteBook = storage.load();
+            this.notebook = storage.load();
         } catch (IOException e) {
-            System.out.println("Failed to load tasks. Starting with an empty notebook.");
-            noteBook = new Notebook();
+            this.ui.showMessage("Failed to load tasks. Starting with an empty notebook.");
+            this.notebook = new Notebook();
         }
-
-        Scanner sc = new Scanner(System.in);
-        System.out.println(INTRO);
-
-        while (true) {
-            try {
-                String[] line = sc.nextLine().split(" /");
-                String[] cmd = line[0].split(" ");
-
-                if (cmd[0].equalsIgnoreCase("bye")
-                        && cmd.length == 1) {
-                    System.out.println(END);
-                    break;
-                } else if (cmd[0].equalsIgnoreCase("list")
-                        && cmd.length == 1) {
-                    System.out.println(noteBook);
-                } else if (cmd[0].equalsIgnoreCase("mark")) {
-                    int idx = Integer.parseInt(cmd[1]);
-
-                    if (idx > noteBook.size() || idx < 1) {
-                        throw new IndexOutOfBoundException(String
-                                .format("%d is not in your list.", idx));
-                    }
-
-                    noteBook = noteBook.mark(idx);
-
-                    String res = String.format("""
-                        %s
-                        Alright! I've marked this task as done:
-                        \t%s
-                        %s
-                        """,
-                            LINE,
-                            noteBook.getTask(idx),
-                            LINE);
-                    System.out.println(res);
-                } else if (cmd[0].equalsIgnoreCase("unmark")) {
-                    int idx = Integer.parseInt(cmd[1]);
-
-                    if (idx > noteBook.size() || idx < 1) {
-                        throw new IndexOutOfBoundException(String
-                                .format("%d is not in your list.", idx));
-                    }
-
-                    noteBook = noteBook.unmark(idx);
-
-                    String res = String.format("""
-                        %s
-                        Alright! I've marked this task as not done yet:
-                        \t%s
-                        %s
-                        """,
-                            LINE,
-                            noteBook.getTask(idx),
-                            LINE);
-                    System.out.println(res);
-                } else if (cmd[0].equalsIgnoreCase("delete")) {
-                    int idx = Integer.parseInt(cmd[1]);
-
-                    if (idx > noteBook.size() || idx < 1) {
-                        throw new IndexOutOfBoundException(String
-                                .format("%d is not in your list.", idx));
-                    }
-
-                    Task task = noteBook.getTask(idx);
-                    noteBook = noteBook.delete(idx);
-
-                    String res = String.format("""
-                            %s
-                            Noted. I've removed this task:
-                            \t%s
-                            Now you have %d tasks in the list.
-                            %s
-                            """,
-                            LINE,
-                            task,
-                            noteBook.size(),
-                            LINE);
-                    System.out.println(res);
-                } else {
-                    String instruction = String.join(" ",
-                            Arrays.copyOfRange(cmd, 1, cmd.length));
-                    String task;
-
-                    if (cmd[0].equalsIgnoreCase("todo")) {
-                        if (instruction.isEmpty()) {
-                            throw new EmptyDescriptionException("OOPS!!! " +
-                                    "The description of a todo cannot be empty.");
-                        }
-
-                        ToDo todo = new ToDo(instruction);
-                        noteBook = noteBook.add(todo);
-                        task = todo.toString();
-                    } else if (cmd[0].equalsIgnoreCase("deadline")) {
-                        if (instruction.isEmpty()) {
-                            throw new EmptyDescriptionException("OOPS!!! " +
-                                    "The description of a deadline cannot be empty.");
-                        }
-
-                        try {
-                            String[] temp = line[1].split(" ");
-                            String dueDate = String.join(" ", Arrays.copyOfRange(temp, 1, temp.length)) ;
-
-                            Deadline deadline = new Deadline(instruction, dueDate);
-                            noteBook = noteBook.add(deadline);
-                            task = deadline.toString();
-                        } catch (ArrayIndexOutOfBoundsException e) {
-                            throw new IncorrectArgumentsException("Incorrect format for deadline.");
-                        }
-                    } else if (cmd[0].equalsIgnoreCase("event")) {
-                        if (instruction.isEmpty()) {
-                            throw new EmptyDescriptionException("OOPS!!! " +
-                                    "The description of a event cannot be empty.");
-                        }
-
-                        try {
-                            String[] temp1 = line[1].split(" ");
-                            String[] temp2 = line[2].split(" ");
-
-                            String from = String.join(" ", Arrays.copyOfRange(temp1, 1, temp1.length));
-                            String to = String.join(" ", Arrays.copyOfRange(temp2, 1, temp2.length));
-
-                            Event event = new Event(instruction, from, to);
-                            noteBook = noteBook.add(event);
-                            task = event.toString();
-                        } catch (ArrayIndexOutOfBoundsException e) {
-                            throw new IncorrectArgumentsException("Incorrect format for event.");
-                        }
-                    } else {
-                        throw new UnknownCommandException("OOPS!!! I'm sorry, " +
-                                "but I don't know what that means :-(");
-                    }
-                    String res = String.format("""
-                        %s
-                        Got it. I've added this task:
-                        \t%s
-                        Now you have %d tasks in the list.
-                        %s
-                        """,
-                            LINE,
-                            task,
-                            noteBook.size(),
-                            LINE);
-                    System.out.println(res);
-                }
-                storage.save(noteBook);
-            } catch(UnknownCommandException
-                    | IncorrectArgumentsException
-                    | IndexOutOfBoundException
-                    | EmptyDescriptionException
-                    | IOException e) {
-                System.out.println(ErrorMessage(e.getMessage()));
-            }
-        }
-        sc.close();
     }
 
-    private static String ErrorMessage(String message) {
-        return String.format("""
-                %s
-                %s
-                %s
-                """,
-                LINE,
-                message,
-                LINE);
+    public void run() {
+        this.ui.showWelcome();
+        while (true) {
+            try {
+                String line = ui.readCommand();
+                Command cmd = Parser.parse(line);
+                this.notebook = cmd.execute(this.notebook, this.ui);
+                this.storage.save(this.notebook);
+                if (cmd.isExit()) {
+                    this.ui.closeUi();
+                    break;
+                }
+            } catch (IOException e) {
+                this.ui.showMessage(e.getMessage());
+            } catch (NoSuchElementException ignored) {
+                this.ui.showMessage("Please enter a command.");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        new Doopies(FILE_PATH).run();
     }
 }

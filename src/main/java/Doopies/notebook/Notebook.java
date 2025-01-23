@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Notebook {
     private final List<Task> list;
-    private static final String LINE = "_".repeat(60);
 
     public Notebook() {
         this.list = List.<Task>of();
@@ -61,14 +60,7 @@ public class Notebook {
             String temp = String.format("%d. %s\n", i + 1, this.list.get(i));
             str.append(temp);
         }
-        return String.format("""
-                %s
-                Here are the tasks in your list:
-                %s%s
-                """,
-                LINE,
-                str,
-                LINE);
+        return String.format("Here are the tasks in your list:\n%s", str.toString().stripTrailing());
 
     }
 }

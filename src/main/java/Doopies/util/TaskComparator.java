@@ -1,4 +1,4 @@
-package Doopies.storage;
+package Doopies.util;
 
 import Doopies.notebook.*;
 import java.util.Comparator;
