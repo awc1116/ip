@@ -6,6 +6,7 @@ import doopies.command.DeadlineCommand;
 import doopies.command.DeleteCommand;
 import doopies.command.EndCommand;
 import doopies.command.EventCommand;
+import doopies.command.FindCommand;
 import doopies.command.ListCommand;
 import doopies.command.MarkCommand;
 import doopies.command.ToDoCommand;
@@ -49,6 +50,7 @@ public class Parser {
             case "unmark" -> new UnmarkCommand(cmd);
             case "delete" -> new DeleteCommand(cmd);
             case "clear" -> new ClearStorageCommand();
+            case "find" -> new FindCommand(cmd);
             case "todo" -> new ToDoCommand(cmd);
             case "deadline" -> new DeadlineCommand(line);
             case "event" -> new EventCommand(line);

@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -8,8 +10,6 @@ import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DoopiesTest {
     private final String testFilePath = "./data/test_doopies.txt";
@@ -166,5 +166,25 @@ class DoopiesTest {
             2. [E][ ] meeting (from: Jan 24 2025, 02:00 pm to: Jan 24 2025, 04:00 pm)
             3. [D][ ] return book (by: Jan 31 2025, 11:59 pm)
             """);
+    }
+
+    @Test
+    void testFindCommandIntegration() {
+        String input = """
+                todo read book
+                todo write book
+                todo play football
+                find book
+                bye
+                """;
+
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        Doopies doopies = new Doopies("./data/test_storage.txt");
+        doopies.run();
+
+        String output = outputStream.toString();
+        assertTrue(output.contains("Here are the matching tasks in your list:"));
+        assertTrue(output.contains("[T][ ] read book"));
+        assertTrue(output.contains("[T][ ] write book"));
     }
 }
