@@ -39,8 +39,7 @@ public class Parser {
         for (DateFormat format : DateFormat.values()) {
             try {
                 return Optional.of(LocalDateTime.parse(dateStr, format.getFormatter()));
-            } catch (DateTimeParseException e) {
-                continue;
+            } catch (DateTimeParseException ignored) {
             }
         }
         return Optional.empty();

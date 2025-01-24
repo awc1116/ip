@@ -22,6 +22,12 @@ public class Deadline extends Task {
         this.dueDate = Parser.parseMyDate(deadline);
     }
 
+    public String getDeadline() {
+        return this.dueDate.map(date ->
+                        date.format(DateFormat.OUTPUT_FORMAT.getFormatter()))
+                .orElse(this.deadline);
+    }
+
     public LocalDateTime getDeadlineDateTime() {
         return this.dueDate.orElse(LocalDateTime.MAX);
     }
@@ -39,11 +45,5 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(), this.getDeadline());
-    }
-
-    public String getDeadline() {
-        return this.dueDate.map(date ->
-                        date.format(DateFormat.OUTPUT_FORMAT.getFormatter()))
-                .orElse(this.deadline);
     }
 }

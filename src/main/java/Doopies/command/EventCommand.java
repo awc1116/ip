@@ -17,6 +17,10 @@ public class EventCommand extends Command {
         this.line = line;
     }
 
+    private String translate(String[] cmd) {
+        return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
+    }
+
     @Override
     public Notebook execute(Notebook notebook, Ui ui, Storage storage) {
         try {
@@ -47,9 +51,5 @@ public class EventCommand extends Command {
             ui.showMessage("Incorrect format for event.");
         }
         return notebook;
-    }
-
-    private String translate(String[] cmd) {
-        return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
     }
 }

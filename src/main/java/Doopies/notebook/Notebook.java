@@ -41,13 +41,13 @@ public class Notebook {
         return new Notebook(newList.stream().toList());
     }
 
+    public int size() {
+        return this.list.size();
+    }
+
     public Task getTask(int idx) {
         idx -= 1;
         return this.list.get(idx);
-    }
-
-    public int size() {
-        return this.list.size();
     }
 
     public List<Task> getAllTasks() {

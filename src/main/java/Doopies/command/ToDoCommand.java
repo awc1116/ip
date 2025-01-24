@@ -17,6 +17,10 @@ public class ToDoCommand extends Command {
         this.cmd = cmd;
     }
 
+    private String translate(String[] cmd) {
+        return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
+    }
+
     @Override
     public Notebook execute(Notebook notebook, Ui ui, Storage storage) {
         try {
@@ -45,9 +49,5 @@ public class ToDoCommand extends Command {
             ui.showMessage("OOPS!!! The description of a todo cannot be empty.");
         }
         return notebook;
-    }
-
-    private String translate(String[] cmd) {
-        return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
     }
 }

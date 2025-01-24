@@ -17,6 +17,10 @@ public class DeadlineCommand extends Command {
         this.line = line;
     }
 
+    private String translate(String[] cmd) {
+        return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
+    }
+
     @Override
     public Notebook execute(Notebook notebook, Ui ui, Storage storage) {
         try {
@@ -44,9 +48,5 @@ public class DeadlineCommand extends Command {
             ui.showMessage("Incorrect format for deadline.");
         }
         return notebook;
-    }
-
-    private String translate(String[] cmd) {
-        return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
     }
 }

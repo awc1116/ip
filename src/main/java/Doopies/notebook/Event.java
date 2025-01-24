@@ -28,6 +28,18 @@ public class Event extends Task {
         this.endDate = Parser.parseMyDate(end);
     }
 
+    public String getStart() {
+        return this.startDate.map(date ->
+                        date.format(DateFormat.OUTPUT_FORMAT.getFormatter()))
+                .orElse(this.start);
+    }
+
+    public String getEnd() {
+        return this.endDate.map(date ->
+                        date.format(DateFormat.OUTPUT_FORMAT.getFormatter()))
+                .orElse(this.end);
+    }
+
     public LocalDateTime getStartDateTime() {
         return this.startDate.orElse(LocalDateTime.MAX);
     }
@@ -45,17 +57,5 @@ public class Event extends Task {
     @Override
     public String toString() {
         return String.format("[E]%s (from: %s to: %s)", super.toString(), this.getStart(), this.getEnd());
-    }
-
-    public String getStart() {
-        return this.startDate.map(date ->
-                        date.format(DateFormat.OUTPUT_FORMAT.getFormatter()))
-                .orElse(this.start);
-    }
-
-    public String getEnd() {
-        return this.endDate.map(date ->
-                        date.format(DateFormat.OUTPUT_FORMAT.getFormatter()))
-                .orElse(this.end);
     }
 }

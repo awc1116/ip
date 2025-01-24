@@ -24,10 +24,6 @@ public class Doopies {
         }
     }
 
-    public static void main(String[] args) {
-        new Doopies(FILE_PATH).run();
-    }
-
     public void run() {
         this.ui.showWelcome();
         while (true) {
@@ -42,5 +38,9 @@ public class Doopies {
                 this.ui.showMessage("Please enter a command.");
             }
         }
+    }
+
+    public static void main(String[] args) {
+        new Doopies(FILE_PATH).run();
     }
 }
