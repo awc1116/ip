@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
+
 public class NotebookTest {
 
     @Test
@@ -60,5 +62,30 @@ public class NotebookTest {
                 """;
 
         assertEquals(expected.strip(), notebook.toString());
+    }
+
+    @Test
+    void testFindTasks() {
+        Notebook notebook = new Notebook();
+        notebook = notebook.add(new ToDo("read book"));
+        notebook = notebook.add(new ToDo("write book"));
+        notebook = notebook.add(new ToDo("play football"));
+
+        List<Task> result = notebook.find("book");
+
+        assertEquals(2, result.size());
+        assertEquals("[T][ ] read book", result.get(0).toString());
+        assertEquals("[T][ ] write book", result.get(1).toString());
+    }
+
+    @Test
+    void testFindNoMatch() {
+        Notebook notebook = new Notebook();
+        notebook = notebook.add(new ToDo("read book"));
+        notebook = notebook.add(new ToDo("write book"));
+
+        List<Task> result = notebook.find("football");
+
+        assertEquals(0, result.size());
     }
 }

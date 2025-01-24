@@ -54,6 +54,22 @@ public class Notebook {
         return this.list;
     }
 
+    /**
+     * Finds all tasks in the notebook that contain the specified keyword in their description.
+     *
+     * @param keyword The keyword to search for in the task descriptions.
+     * @return A list of tasks that contain the specified keyword in their description.
+     */
+    public List<Task> find(String keyword) {
+        List<Task> newList = new ArrayList<>();
+        for (Task task : this.list) {
+            if (task.getTask().contains(keyword)) {
+                newList.add(task);
+            }
+        }
+        return newList;
+    }
+
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
