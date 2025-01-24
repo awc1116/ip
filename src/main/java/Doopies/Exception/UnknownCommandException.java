@@ -1,4 +1,4 @@
-package Doopies.Exception;
+package doopies.exception;
 
 public class UnknownCommandException extends Exception {
     public UnknownCommandException(String message) {

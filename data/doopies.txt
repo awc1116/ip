@@ -1,3 +1,1 @@
-T | 1 | join sports club
-E | 0 | meeting | Jan 24 2025, 02:00 pm | Jan 24 2025, 04:00 pm
-D | 0 | return book | Jan 31 2025, 11:59 pm
+T | 1 | read book

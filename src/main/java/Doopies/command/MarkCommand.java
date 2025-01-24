@@ -1,8 +1,8 @@
-package Doopies.command;
+package doopies.command;
 
-import Doopies.Exception.IndexOutOfBoundException;
-import Doopies.notebook.Notebook;
-import Doopies.userInterface.Ui;
+import doopies.exception.IndexOutOfBoundException;
+import doopies.notebook.Notebook;
+import doopies.userinterface.Ui;
 
 public class MarkCommand extends Command {
     private final String[] cmd;

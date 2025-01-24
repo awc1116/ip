@@ -1,4 +1,4 @@
-package Doopies.notebook;
+package doopies.notebook;
 
 public class ToDo extends Task {
     public ToDo(String task) {

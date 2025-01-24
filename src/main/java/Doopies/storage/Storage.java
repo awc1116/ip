@@ -1,12 +1,19 @@
-package Doopies.storage;
+package doopies.storage;
 
-import Doopies.Exception.InvalidTaskTypeException;
-import Doopies.notebook.*;
-import Doopies.util.TaskComparator;
+import doopies.exception.InvalidTaskTypeException;
+import doopies.notebook.Deadline;
+import doopies.notebook.Event;
+import doopies.notebook.Notebook;
+import doopies.notebook.Task;
+import doopies.notebook.ToDo;
+import doopies.util.TaskComparator;
 
-import java.io.*;
-import java.nio.file.*;
-import java.util.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Storage {
     private final Path filePath;
@@ -23,6 +30,7 @@ public class Storage {
 
         List<Task> tasks = new ArrayList<>();
         List<String> lines = Files.readAllLines(filePath);
+
         for (String line : lines) {
             try {
                 tasks.add(parseTask(line));
@@ -31,19 +39,6 @@ public class Storage {
             }
         }
         return new Notebook(tasks);
-    }
-
-    public void save(Notebook notebook) throws IOException {
-        Files.write(this.filePath, new ArrayList<String>());
-
-        List<Task> tasks = new ArrayList<>(notebook.getAllTasks());
-        tasks.sort(new TaskComparator());
-
-        List<String> lines = new ArrayList<>();
-        for (Task task : tasks) {
-            lines.add(serializeTask(task));
-        }
-        Files.write(this.filePath, lines);
     }
 
     private Task parseTask(String line) throws InvalidTaskTypeException {
@@ -58,6 +53,20 @@ public class Storage {
             case "E" -> new Event(description, isDone, parts[3], parts[4]);
             default -> throw new InvalidTaskTypeException("Invalid task type");
         };
+    }
+
+    public void save(Notebook notebook) throws IOException {
+        Files.write(this.filePath, new ArrayList<String>());
+
+        List<Task> tasks = new ArrayList<>(notebook.getAllTasks());
+        tasks.sort(new TaskComparator());
+
+        List<String> lines = new ArrayList<>();
+
+        for (Task task : tasks) {
+            lines.add(serializeTask(task));
+        }
+        Files.write(this.filePath, lines);
     }
 
     private String serializeTask(Task task) {

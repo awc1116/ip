@@ -1,9 +1,6 @@
-package Doopies.util;
+package doopies.util;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Optional;
 
 public enum DateFormat {
     INPUT_FORMAT_1("yyyy-MM-dd HHmm"),
@@ -24,15 +21,5 @@ public enum DateFormat {
 
     public DateTimeFormatter getFormatter() {
         return this.formatter;
-    }
-
-    public static Optional<LocalDateTime> parseMyDate(String dateStr) {
-        for (DateFormat format : DateFormat.values()) {
-            try {
-                return Optional.of(LocalDateTime.parse(dateStr, format.getFormatter()));
-            } catch (DateTimeParseException ignored) {
-            }
-        }
-        return Optional.empty();
     }
 }

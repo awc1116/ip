@@ -1,16 +1,17 @@
-import Doopies.storage.*;
-import Doopies.notebook.*;
-import Doopies.userInterface.*;
-import Doopies.command.*;
+import doopies.command.Command;
+import doopies.notebook.Notebook;
+import doopies.storage.Storage;
+import doopies.userinterface.Ui;
+import doopies.util.Parser;
 
 import java.io.IOException;
 import java.util.NoSuchElementException;
 
 public class Doopies {
+    private static final String FILE_PATH = "./data/doopies.txt";
     private final Storage storage;
     private final Ui ui;
     private Notebook notebook;
-    private static final String FILE_PATH = "./data/doopies.txt";
 
     public Doopies(String filePath) {
         this.storage = new Storage(filePath);
@@ -23,16 +24,19 @@ public class Doopies {
         }
     }
 
+    public static void main(String[] args) {
+        new Doopies(FILE_PATH).run();
+    }
+
     public void run() {
         this.ui.showWelcome();
         while (true) {
             try {
                 String line = ui.readCommand();
-                Command cmd = Parser.parse(line);
+                Command cmd = Parser.parseCommand(line);
                 this.notebook = cmd.execute(this.notebook, this.ui);
                 this.storage.save(this.notebook);
                 if (cmd.isExit()) {
-                    this.ui.closeUi();
                     break;
                 }
             } catch (IOException e) {
@@ -41,9 +45,5 @@ public class Doopies {
                 this.ui.showMessage("Please enter a command.");
             }
         }
-    }
-
-    public static void main(String[] args) {
-        new Doopies(FILE_PATH).run();
     }
 }

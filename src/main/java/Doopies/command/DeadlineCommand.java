@@ -1,9 +1,9 @@
-package Doopies.command;
+package doopies.command;
 
-import Doopies.Exception.EmptyDescriptionException;
-import Doopies.notebook.Notebook;
-import Doopies.notebook.Deadline;
-import Doopies.userInterface.Ui;
+import doopies.exception.EmptyDescriptionException;
+import doopies.notebook.Deadline;
+import doopies.notebook.Notebook;
+import doopies.userinterface.Ui;
 
 import java.util.Arrays;
 

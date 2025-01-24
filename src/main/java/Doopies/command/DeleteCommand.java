@@ -1,8 +1,9 @@
-package Doopies.command;
+package doopies.command;
 
-import Doopies.Exception.IndexOutOfBoundException;
-import Doopies.notebook.*;
-import Doopies.userInterface.Ui;
+import doopies.exception.IndexOutOfBoundException;
+import doopies.notebook.Notebook;
+import doopies.notebook.Task;
+import doopies.userinterface.Ui;
 
 public class DeleteCommand extends Command {
     private final String[] cmd;
@@ -24,8 +25,10 @@ public class DeleteCommand extends Command {
             Task task = notebook.getTask(idx);
             notebook = notebook.delete(idx);
 
-            String message = String.format("Noted. I've removed this task:\n\t%s\n" +
-                            "Now you have %d tasks in the list.",
+            String message = String.format("""
+                            Noted. I've removed this task:
+                            \t%s
+                            Now you have %d tasks in the list.""",
                     task, notebook.size());
 
             ui.showMessage(message);

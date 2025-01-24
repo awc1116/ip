@@ -1,9 +1,9 @@
-package Doopies.command;
+package doopies.command;
 
-import Doopies.Exception.EmptyDescriptionException;
-import Doopies.notebook.Notebook;
-import Doopies.notebook.ToDo;
-import Doopies.userInterface.Ui;
+import doopies.exception.EmptyDescriptionException;
+import doopies.notebook.Notebook;
+import doopies.notebook.ToDo;
+import doopies.userinterface.Ui;
 
 import java.util.Arrays;
 
@@ -13,10 +13,6 @@ public class ToDoCommand extends Command {
     public ToDoCommand(String[] cmd) {
         super();
         this.cmd = cmd;
-    }
-
-    private String translate(String[] cmd) {
-        return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
     }
 
     @Override
@@ -32,9 +28,11 @@ public class ToDoCommand extends Command {
             ToDo todo = new ToDo(description);
             notebook = notebook.add(todo);
 
-            String message = String.format("Got it. I've added this task:\n\t%s\n" +
-                    "Now you have %d tasks in the list.",
-                    todo.toString(), notebook.size());
+            String message = String.format("""
+                            Got it. I've added this task:
+                            \t%s
+                            Now you have %d tasks in the list.""",
+                    todo, notebook.size());
 
             ui.showMessage(message);
         } catch (EmptyDescriptionException e) {
@@ -43,5 +41,9 @@ public class ToDoCommand extends Command {
             ui.showMessage("OOPS!!! The description of a todo cannot be empty.");
         }
         return notebook;
+    }
+
+    private String translate(String[] cmd) {
+        return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
     }
 }

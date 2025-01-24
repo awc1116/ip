@@ -1,7 +1,7 @@
-package Doopies.command;
+package doopies.command;
 
-import Doopies.notebook.Notebook;
-import Doopies.userInterface.Ui;
+import doopies.notebook.Notebook;
+import doopies.userinterface.Ui;
 
 public abstract class Command {
     private final boolean exit;

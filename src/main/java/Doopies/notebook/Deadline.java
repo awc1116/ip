@@ -1,6 +1,7 @@
-package Doopies.notebook;
+package doopies.notebook;
 
-import Doopies.util.DateFormat;
+import doopies.util.DateFormat;
+import doopies.util.Parser;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -12,19 +13,13 @@ public class Deadline extends Task {
     public Deadline(String task, String deadline) {
         super(task);
         this.deadline = deadline;
-        this.dueDate = DateFormat.parseMyDate(deadline);
+        this.dueDate = Parser.parseMyDate(deadline);
     }
 
     public Deadline(String task, boolean done, String deadline) {
         super(task, done);
         this.deadline = deadline;
-        this.dueDate = DateFormat.parseMyDate(deadline);
-    }
-
-    public String getDeadline() {
-        return this.dueDate.map(date ->
-                        date.format(DateFormat.OUTPUT_FORMAT.getFormatter()))
-                .orElse(this.deadline);
+        this.dueDate = Parser.parseMyDate(deadline);
     }
 
     public LocalDateTime getDeadlineDateTime() {
@@ -44,5 +39,11 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(), this.getDeadline());
+    }
+
+    public String getDeadline() {
+        return this.dueDate.map(date ->
+                        date.format(DateFormat.OUTPUT_FORMAT.getFormatter()))
+                .orElse(this.deadline);
     }
 }

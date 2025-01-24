@@ -1,6 +1,7 @@
-package Doopies.notebook;
+package doopies.notebook;
 
-import Doopies.util.DateFormat;
+import doopies.util.DateFormat;
+import doopies.util.Parser;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -15,28 +16,16 @@ public class Event extends Task {
         super(task);
         this.start = start;
         this.end = end;
-        this.startDate = DateFormat.parseMyDate(start);
-        this.endDate = DateFormat.parseMyDate(end);
+        this.startDate = Parser.parseMyDate(start);
+        this.endDate = Parser.parseMyDate(end);
     }
 
     public Event(String task, boolean done, String start, String end) {
         super(task, done);
         this.start = start;
         this.end = end;
-        this.startDate = DateFormat.parseMyDate(start);
-        this.endDate = DateFormat.parseMyDate(end);
-    }
-
-    public String getStart() {
-        return this.startDate.map(date ->
-                        date.format(DateFormat.OUTPUT_FORMAT.getFormatter()))
-                .orElse(this.start);
-    }
-
-    public String getEnd() {
-        return this.endDate.map(date ->
-                        date.format(DateFormat.OUTPUT_FORMAT.getFormatter()))
-                .orElse(this.end);
+        this.startDate = Parser.parseMyDate(start);
+        this.endDate = Parser.parseMyDate(end);
     }
 
     public LocalDateTime getStartDateTime() {
@@ -56,5 +45,17 @@ public class Event extends Task {
     @Override
     public String toString() {
         return String.format("[E]%s (from: %s to: %s)", super.toString(), this.getStart(), this.getEnd());
+    }
+
+    public String getStart() {
+        return this.startDate.map(date ->
+                        date.format(DateFormat.OUTPUT_FORMAT.getFormatter()))
+                .orElse(this.start);
+    }
+
+    public String getEnd() {
+        return this.endDate.map(date ->
+                        date.format(DateFormat.OUTPUT_FORMAT.getFormatter()))
+                .orElse(this.end);
     }
 }

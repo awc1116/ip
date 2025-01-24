@@ -1,4 +1,4 @@
-package Doopies.notebook;
+package doopies.notebook;
 
 public abstract class Task {
     private final String task;

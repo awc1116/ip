@@ -1,12 +1,13 @@
-package Doopies.notebook;
-import java.util.List;
+package doopies.notebook;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Notebook {
     private final List<Task> list;
 
     public Notebook() {
-        this.list = List.<Task>of();
+        this.list = List.of();
     }
 
     public Notebook(List<Task> list) {
@@ -14,28 +15,28 @@ public class Notebook {
     }
 
     public Notebook add(Task task) {
-        List<Task> newList = new ArrayList<Task>(this.list);
+        List<Task> newList = new ArrayList<>(this.list);
         newList.add(task);
         return new Notebook(newList.stream().toList());
     }
 
     public Notebook mark(int idx) {
         idx -= 1;
-        List<Task> newList = new ArrayList<Task>(this.list);
+        List<Task> newList = new ArrayList<>(this.list);
         newList.set(idx, this.list.get(idx).mark());
         return new Notebook(newList.stream().toList());
     }
 
     public Notebook unmark(int idx) {
         idx -= 1;
-        List<Task> newList = new ArrayList<Task>(this.list);
+        List<Task> newList = new ArrayList<>(this.list);
         newList.set(idx, this.list.get(idx).unmark());
         return new Notebook(newList.stream().toList());
     }
 
     public Notebook delete(int idx) {
         idx -= 1;
-        List<Task> newList = new ArrayList<Task>(this.list);
+        List<Task> newList = new ArrayList<>(this.list);
         newList.remove(idx);
         return new Notebook(newList.stream().toList());
     }

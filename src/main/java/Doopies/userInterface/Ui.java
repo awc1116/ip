@@ -1,9 +1,8 @@
-package Doopies.userInterface;
+package doopies.userinterface;
 
 import java.util.Scanner;
 
 public class Ui {
-    private final Scanner sc;
     private static final String LINE = "_".repeat(60);
     private static final String INTRO = String.format("""
                 %s
@@ -20,6 +19,7 @@ public class Ui {
                 """,
             LINE,
             LINE);
+    private final Scanner sc;
 
     public Ui() {
         this.sc = new Scanner(System.in);
@@ -37,11 +37,11 @@ public class Ui {
         System.out.println(LINE + "\n" + message + "\n" + LINE);
     }
 
-    public void closeUi() {
-        this.sc.close();
-    }
-
     public String readCommand() {
         return this.sc.nextLine();
+    }
+
+    public void closeUi() {
+        this.sc.close();
     }
 }

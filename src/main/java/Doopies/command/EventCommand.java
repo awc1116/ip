@@ -1,9 +1,9 @@
-package Doopies.command;
+package doopies.command;
 
-import Doopies.Exception.EmptyDescriptionException;
-import Doopies.notebook.Notebook;
-import Doopies.notebook.Event;
-import Doopies.userInterface.Ui;
+import doopies.exception.EmptyDescriptionException;
+import doopies.notebook.Event;
+import doopies.notebook.Notebook;
+import doopies.userinterface.Ui;
 
 import java.util.Arrays;
 
@@ -13,10 +13,6 @@ public class EventCommand extends Command {
     public EventCommand(String[] line) {
         super();
         this.line = line;
-    }
-
-    private String translate(String[] cmd) {
-        return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
     }
 
     @Override
@@ -34,9 +30,11 @@ public class EventCommand extends Command {
             Event event = new Event(description, from, to);
             notebook = notebook.add(event);
 
-            String message = String.format("Got it. I've added this task:\n\t%s\n" +
-                            "Now you have %d tasks in the list.",
-                    event.toString(), notebook.size());
+            String message = String.format("""
+                            Got it. I've added this task:
+                            \t%s
+                            Now you have %d tasks in the list.""",
+                    event, notebook.size());
 
             ui.showMessage(message);
         } catch (EmptyDescriptionException e) {
@@ -45,5 +43,9 @@ public class EventCommand extends Command {
             ui.showMessage("Incorrect format for event.");
         }
         return notebook;
+    }
+
+    private String translate(String[] cmd) {
+        return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
     }
 }

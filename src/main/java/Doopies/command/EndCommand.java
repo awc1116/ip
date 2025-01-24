@@ -1,7 +1,7 @@
-package Doopies.command;
+package doopies.command;
 
-import Doopies.notebook.Notebook;
-import Doopies.userInterface.Ui;
+import doopies.notebook.Notebook;
+import doopies.userinterface.Ui;
 
 public class EndCommand extends Command {
     public EndCommand() {
@@ -11,6 +11,7 @@ public class EndCommand extends Command {
     @Override
     public Notebook execute(Notebook notebook, Ui ui) {
         ui.showEnding();
+        ui.closeUi();
         return notebook;
     }
 }

@@ -1,4 +1,4 @@
-package Doopies.Exception;
+package doopies.exception;
 
 public class IndexOutOfBoundException extends Exception {
     public IndexOutOfBoundException(String message) {

@@ -1,6 +1,10 @@
-package Doopies.util;
+package doopies.util;
 
-import Doopies.notebook.*;
+import doopies.notebook.Deadline;
+import doopies.notebook.Event;
+import doopies.notebook.Task;
+import doopies.notebook.ToDo;
+
 import java.util.Comparator;
 
 public class TaskComparator implements Comparator<Task> {
