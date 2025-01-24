@@ -16,7 +16,28 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
+/**
+ * Handles the parsing of user input into commands and dates.
+ * <p>
+ *     The {@code Parser} class provides methods to:
+ * <ul>
+ *     <li>Convert user input into {@link Command} objects that the application can execute.</li>
+ *     <li>Parse date strings into {@link LocalDateTime} objects using predefined formats in {@link DateFormat}.</li>
+ * </ul>
+ * </p>
+ */
 public class Parser {
+
+    /**
+     * Parses the user input into a {@link Command} object.
+     * <p>
+     *     This method analyzes the input string, determines the command type, and constructs the appropriate {@link Command}
+     *     object. If the command is unrecognized, an {@link UnknownCommand} is returned.
+     * </p>
+     *
+     * @param command The user input string to parse.
+     * @return A {@link Command} object representing the parsed command.
+     */
     public static Command parseCommand(String command) {
         String[] line = command.split(" /");
         String[] cmd = line[0].split(" ");
@@ -35,12 +56,22 @@ public class Parser {
         };
     }
 
+    /**
+     * Parses a date string into a {@link LocalDateTime} object.
+     * <p>
+     *     This method attempts to parse the input string using all date formats defined in {@link DateFormat}.
+     *     If the string cannot be parsed using any of the formats, an empty {@link Optional} is returned.
+     * </p>
+     *
+     * @param dateStr The date string to parse.
+     * @return An {@link Optional} containing the parsed {@link LocalDateTime} if successful, or an empty {@link Optional}
+     * if the string cannot be parsed.
+     */
     public static Optional<LocalDateTime> parseMyDate(String dateStr) {
         for (DateFormat format : DateFormat.values()) {
             try {
                 return Optional.of(LocalDateTime.parse(dateStr, format.getFormatter()));
-            } catch (DateTimeParseException e) {
-                continue;
+            } catch (DateTimeParseException ignored) {
             }
         }
         return Optional.empty();

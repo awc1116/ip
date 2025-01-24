@@ -9,14 +9,55 @@ import doopies.userinterface.Ui;
 import java.io.IOException;
 import java.util.Arrays;
 
+/**
+ * Represents a command to add a todo task to the notebook.
+ * <p>
+ * The command parses the task description, creates a new {@link ToDo} task,
+ * adds it to the notebook, and saves the updated notebook to storage.
+ * </p>
+ */
 public class ToDoCommand extends Command {
+    /** The parsed input command containing the todo action and task description. */
     private final String[] cmd;
 
+    /**
+     * Constructs a ToDoCommand with the specified parsed input.
+     *
+     * @param cmd The parsed input command containing the todo action and task description.
+     */
     public ToDoCommand(String[] cmd) {
         super();
         this.cmd = cmd;
     }
 
+    /**
+     * Translates the parsed input command into a single string.
+     * <p>
+     * The translation joins all elements of the input array after the first element into a single string,
+     * preserving spaces between words.
+     * </p>
+     *
+     * @param cmd The array of input tokens to translate.
+     * @return The translated string containing the task description.
+     */
+    private String translate(String[] cmd) {
+        return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
+    }
+
+    /**
+     * {@inheritDoc}
+     * <p>
+     *     This implementation adds a {@link ToDo} task to the notebook using the task description provided by the user.
+     *     If successful, the updated notebook is saved to storage, and a confirmation message is displayed.
+     *     If the description is missing or invalid, an appropriate error message is displayed.
+     * </p>
+     *
+     * @param notebook The current in-memory notebook containing the list of tasks.
+     * @param ui       The user interface used to interact with the user.
+     * @param storage  The storage system used to persist the updated notebook.
+     * @return The updated notebook containing the new todo task.
+     * @throws IOException If an error occurs while saving the notebook to storage.
+     */
     @Override
     public Notebook execute(Notebook notebook, Ui ui, Storage storage) {
         try {
@@ -45,9 +86,5 @@ public class ToDoCommand extends Command {
             ui.showMessage("OOPS!!! The description of a todo cannot be empty.");
         }
         return notebook;
-    }
-
-    private String translate(String[] cmd) {
-        return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
     }
 }
