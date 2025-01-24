@@ -15,13 +15,36 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Handles storage operations for saving and loading tasks to and from a file.
+ * <p>
+ *     The {@code Storage} class provides methods to save tasks from a {@link Notebook} to disk,
+ *     load tasks from disk into a {@link Notebook}, and clear the stored tasks.
+ * </p>
+ */
 public class Storage {
+    /** The path to the file used for storing tasks. */
     private final Path filePath;
 
+    /**
+     * Constructs a new {@code Storage} instance with the specified file path.
+     *
+     * @param filePath The path to the file used for storing tasks.
+     */
     public Storage(String filePath) {
         this.filePath = Paths.get(filePath);
     }
 
+    /**
+     * Loads tasks from the storage file into a {@link Notebook}.
+     * <p>
+     *     If the file does not exist, it is created along with any necessary directories. Invalid
+     *     task lines in the file are skipped, and a warning is logged to the console.
+     * </p>
+     *
+     * @return A {@link Notebook} containing the tasks loaded from the file.
+     * @throws IOException If an error occurs while reading from or creating the file.
+     */
     public Notebook load() throws IOException {
         if (Files.notExists(this.filePath)) {
             Files.createDirectories(this.filePath.getParent());
@@ -41,6 +64,13 @@ public class Storage {
         return new Notebook(tasks);
     }
 
+    /**
+     * Parses a line from the storage file into a {@link Task}.
+     *
+     * @param line The line to parse.
+     * @return The task represented by the line.
+     * @throws InvalidTaskTypeException If the line does not represent a valid task type.
+     */
     private Task parseTask(String line) throws InvalidTaskTypeException {
         String[] parts = line.split(" \\| ");
         String type = parts[0];
@@ -55,6 +85,15 @@ public class Storage {
         };
     }
 
+    /**
+     * Saves tasks from a {@link Notebook} to the storage file.
+     * <p>
+     *     The tasks are saved in a sorted order defined by the {@link TaskComparator}.
+     * </p>
+     *
+     * @param notebook The notebook containing the tasks to save.
+     * @throws IOException If an error occurs while writing to the file.
+     */
     public void save(Notebook notebook) throws IOException {
         Files.write(this.filePath, new ArrayList<String>());
 
@@ -69,6 +108,12 @@ public class Storage {
         Files.write(this.filePath, lines);
     }
 
+    /**
+     * Converts a {@link Task} into a line suitable for storage in the file.
+     *
+     * @param task The task to serialize.
+     * @return A formatted string representing the task.
+     */
     private String serializeTask(Task task) {
         if (task instanceof ToDo) {
             return String.format("T | %d | %s", task.isDone() ? 1 : 0, task.getTask());
@@ -82,6 +127,11 @@ public class Storage {
         return "";
     }
 
+    /**
+     * Clears all tasks from the storage file.
+     *
+     * @throws IOException If an error occurs while writing to the file.
+     */
     public void clear() throws IOException {
         Files.write(this.filePath, new ArrayList<String>());
     }
