@@ -7,14 +7,40 @@ import doopies.userinterface.Ui;
 
 import java.io.IOException;
 
+/**
+ * Represents a command to unmark a task as not done in the notebook.
+ * <p>
+ *     The {@code UnmarkCommand} removes the completion status of a specified task in the notebook,
+ *     saves the updated notebook to storage, and notifies the user.
+ * </p>
+ */
 public class UnmarkCommand extends Command {
+    /** The parsed command arguments, including the task index to be unmarked. */
     private final String[] cmd;
 
+    /**
+     * Constructs an {@code UnmarkCommand} with the specified command arguments.
+     *
+     * @param cmd The parsed command arguments containing the unmark action and the task index.
+     */
     public UnmarkCommand(String[] cmd) {
         super();
         this.cmd = cmd;
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     *     This implementation unmarks the specified task in the notebook, saves the updated notebook to storage,
+     *     and displays a confirmation message to the user. If the index is invalid or storage cannot be saved,
+     *     an error message is displayed.
+     * </p>
+     *
+     * @param notebook The current in-memory notebook containing the list of tasks.
+     * @param ui       The user interface used to display messages to the user.
+     * @param storage  The storage system used to persist changes to the notebook.
+     * @return The updated notebook with the specified task unmarked.
+     */
     @Override
     public Notebook execute(Notebook notebook, Ui ui, Storage storage) {
         try {
