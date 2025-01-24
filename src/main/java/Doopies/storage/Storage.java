@@ -81,4 +81,8 @@ public class Storage {
         }
         return "";
     }
+
+    public void clear() throws IOException {
+        Files.write(this.filePath, new ArrayList<String>());
+    }
 }

@@ -1,5 +1,6 @@
 package doopies.util;
 
+import doopies.command.ClearStorageCommand;
 import doopies.command.Command;
 import doopies.command.DeadlineCommand;
 import doopies.command.DeleteCommand;
@@ -26,6 +27,7 @@ public class Parser {
             case "mark" -> new MarkCommand(cmd);
             case "unmark" -> new UnmarkCommand(cmd);
             case "delete" -> new DeleteCommand(cmd);
+            case "clear" -> new ClearStorageCommand();
             case "todo" -> new ToDoCommand(cmd);
             case "deadline" -> new DeadlineCommand(line);
             case "event" -> new EventCommand(line);
@@ -38,7 +40,7 @@ public class Parser {
             try {
                 return Optional.of(LocalDateTime.parse(dateStr, format.getFormatter()));
             } catch (DateTimeParseException e) {
-                return Optional.empty();
+                continue;
             }
         }
         return Optional.empty();

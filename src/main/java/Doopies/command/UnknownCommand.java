@@ -2,6 +2,7 @@ package doopies.command;
 
 import doopies.exception.UnknownCommandException;
 import doopies.notebook.Notebook;
+import doopies.storage.Storage;
 import doopies.userinterface.Ui;
 
 public class UnknownCommand extends Command {
@@ -10,7 +11,7 @@ public class UnknownCommand extends Command {
     }
 
     @Override
-    public Notebook execute(Notebook notebook, Ui ui) {
+    public Notebook execute(Notebook notebook, Ui ui, Storage storage) {
         try {
             throw new UnknownCommandException("OOPS!!! I'm sorry, " +
                     "but I don't know what that means :-(");

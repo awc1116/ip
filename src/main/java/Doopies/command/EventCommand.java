@@ -3,8 +3,10 @@ package doopies.command;
 import doopies.exception.EmptyDescriptionException;
 import doopies.notebook.Event;
 import doopies.notebook.Notebook;
+import doopies.storage.Storage;
 import doopies.userinterface.Ui;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 public class EventCommand extends Command {
@@ -16,7 +18,7 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public Notebook execute(Notebook notebook, Ui ui) {
+    public Notebook execute(Notebook notebook, Ui ui, Storage storage) {
         try {
             String description = translate(this.line[0].split(" "));
             String from = translate(this.line[1].split(" "));
@@ -29,6 +31,7 @@ public class EventCommand extends Command {
 
             Event event = new Event(description, from, to);
             notebook = notebook.add(event);
+            storage.save(notebook);
 
             String message = String.format("""
                             Got it. I've added this task:
@@ -37,7 +40,8 @@ public class EventCommand extends Command {
                     event, notebook.size());
 
             ui.showMessage(message);
-        } catch (EmptyDescriptionException e) {
+        } catch (EmptyDescriptionException
+                 | IOException e) {
             ui.showMessage(e.getMessage());
         } catch (ArrayIndexOutOfBoundsException e) {
             ui.showMessage("Incorrect format for event.");

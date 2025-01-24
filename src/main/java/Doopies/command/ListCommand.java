@@ -1,6 +1,7 @@
 package doopies.command;
 
 import doopies.notebook.Notebook;
+import doopies.storage.Storage;
 import doopies.userinterface.Ui;
 
 public class ListCommand extends Command {
@@ -9,7 +10,7 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public Notebook execute(Notebook notebook, Ui ui) {
+    public Notebook execute(Notebook notebook, Ui ui, Storage storage) {
         ui.showMessage(notebook.toString());
         return notebook;
     }

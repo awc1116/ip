@@ -34,13 +34,10 @@ public class Doopies {
             try {
                 String line = ui.readCommand();
                 Command cmd = Parser.parseCommand(line);
-                this.notebook = cmd.execute(this.notebook, this.ui);
-                this.storage.save(this.notebook);
+                this.notebook = cmd.execute(this.notebook, this.ui, this.storage);
                 if (cmd.isExit()) {
                     break;
                 }
-            } catch (IOException e) {
-                this.ui.showMessage(e.getMessage());
             } catch (NoSuchElementException ignored) {
                 this.ui.showMessage("Please enter a command.");
             }

@@ -1,16 +1,17 @@
 package doopies.command;
 
 import doopies.notebook.Notebook;
+import doopies.storage.Storage;
 import doopies.userinterface.Ui;
 
 public abstract class Command {
     private final boolean exit;
 
-    Command() {
+    public Command() {
         this.exit = false;
     }
 
-    Command(boolean exit) {
+    public Command(boolean exit) {
         this.exit = exit;
     }
 
@@ -18,5 +19,5 @@ public abstract class Command {
         return this.exit;
     }
 
-    public abstract Notebook execute(Notebook notebook, Ui ui);
+    public abstract Notebook execute(Notebook notebook, Ui ui, Storage storage);
 }
