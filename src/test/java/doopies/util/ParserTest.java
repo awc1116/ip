@@ -1,5 +1,14 @@
 package doopies.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+
 import doopies.command.ClearStorageCommand;
 import doopies.command.Command;
 import doopies.command.DeadlineCommand;
@@ -8,15 +17,6 @@ import doopies.command.EventCommand;
 import doopies.command.ListCommand;
 import doopies.command.ToDoCommand;
 import doopies.command.UnknownCommand;
-
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 public class ParserTest {
 

@@ -1,18 +1,19 @@
 package doopies.command;
 
+import java.io.IOException;
+import java.util.Arrays;
+
 import doopies.exception.EmptyDescriptionException;
 import doopies.notebook.Deadline;
 import doopies.notebook.Notebook;
 import doopies.storage.Storage;
 import doopies.userinterface.Ui;
 
-import java.io.IOException;
-import java.util.Arrays;
-
 /**
  * Represents a command to add a deadline task to the notebook.
  * <p>
- *     The command parses the task description and due date, creates a new {@link Deadline} task, adds it to the notebook,
+ *     The command parses the task description and due date,
+ *     creates a new {@link Deadline} task, adds it to the notebook,
  *     and saves the updated notebook storage.
  * </p>
  */
@@ -55,8 +56,8 @@ public class DeadlineCommand extends Command {
             String dueDate = translate(this.line[1].split(" "));
 
             if (description.isEmpty()) {
-                throw new EmptyDescriptionException("OOPS!!! " +
-                        "The description of a deadline cannot be empty.");
+                throw new EmptyDescriptionException("OOPS!!! "
+                        + "The description of a deadline cannot be empty.");
             }
 
             Deadline deadline = new Deadline(description, dueDate);
@@ -66,7 +67,9 @@ public class DeadlineCommand extends Command {
             String message = String.format("""
                             Got it. I've added this task:
                             \t%s
-                            Now you have %d tasks in the list.""", deadline, notebook.size());
+                            Now you have %d tasks in the list.""",
+                    deadline,
+                    notebook.size());
 
             ui.showMessage(message);
         } catch (EmptyDescriptionException

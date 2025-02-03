@@ -1,13 +1,13 @@
 package doopies.command;
 
+import java.io.IOException;
+import java.util.Arrays;
+
 import doopies.exception.EmptyDescriptionException;
 import doopies.notebook.Event;
 import doopies.notebook.Notebook;
 import doopies.storage.Storage;
 import doopies.userinterface.Ui;
-
-import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * Represents a command to add an event task to the notebook.
@@ -39,7 +39,8 @@ public class EventCommand extends Command {
      * <p>
      *     This implementation adds an {@link Event} task to the notebook using the task description,
      *     start time, and end time provided by the user. If successful, the updated notebook is saved to storage,
-     *     and a confirmation message is displayed. If the input is incomplete or invalid, an error message is displayed.
+     *     and a confirmation message is displayed. If the input is incomplete or invalid,
+     *     an error message is displayed.
      * </p>
      *
      * @param notebook The current in-memory notebook containing the list of tasks.
@@ -56,8 +57,8 @@ public class EventCommand extends Command {
             String to = translate(this.line[2].split(" "));
 
             if (description.isEmpty()) {
-                throw new EmptyDescriptionException("OOPS!!! " +
-                        "The description of an event cannot be empty.");
+                throw new EmptyDescriptionException("OOPS!!! "
+                        + "The description of an event cannot be empty.");
             }
 
             Event event = new Event(description, from, to);

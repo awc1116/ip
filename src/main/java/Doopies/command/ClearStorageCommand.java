@@ -1,10 +1,10 @@
 package doopies.command;
 
+import java.io.IOException;
+
 import doopies.notebook.Notebook;
 import doopies.storage.Storage;
 import doopies.userinterface.Ui;
-
-import java.io.IOException;
 
 /**
  * Represents a command to clear the storage file while keeping the in-memory tasks intact.

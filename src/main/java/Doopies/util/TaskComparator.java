@@ -1,11 +1,11 @@
 package doopies.util;
 
+import java.util.Comparator;
+
 import doopies.notebook.Deadline;
 import doopies.notebook.Event;
 import doopies.notebook.Task;
 import doopies.notebook.ToDo;
-
-import java.util.Comparator;
 
 /**
  * A comparator for sorting tasks in the doopies.Doopies application.
@@ -45,7 +45,7 @@ public class TaskComparator implements Comparator<Task> {
      * @param t1 The first task to compare.
      * @param t2 The second task to compare.
      * @return A negative integer, zero, or a positive integer as {@code t1} is less than, equal to,
-     * or greater than {@code t2}.
+     *     or greater than {@code t2}.
      */
     @Override
     public int compare(Task t1, Task t2) {

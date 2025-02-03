@@ -1,13 +1,13 @@
 package doopies;
 
+import java.io.IOException;
+import java.util.NoSuchElementException;
+
 import doopies.command.Command;
 import doopies.notebook.Notebook;
 import doopies.storage.Storage;
 import doopies.userinterface.Ui;
 import doopies.util.Parser;
-
-import java.io.IOException;
-import java.util.NoSuchElementException;
 
 /**
  * Represents the main entry point for the doopies.Doopies application.

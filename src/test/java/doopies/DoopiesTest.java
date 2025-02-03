@@ -1,8 +1,5 @@
 package doopies;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayInputStream;
@@ -12,6 +9,9 @@ import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class DoopiesTest {
     private final String testFilePath = "./data/test_doopies.txt";
@@ -121,7 +121,8 @@ class DoopiesTest {
     void testEventCommandValid() {
         simulateInput("event meeting /from 24/1/2025 1400 /to 24/1/2025 1600\nbye\n");
         new Doopies(testFilePath).run();
-        assertOutputContains("Got it. I've added this task:\n\t[E][ ] meeting (from: Jan 24 2025, 02:00 pm to: Jan 24 2025, 04:00 pm)");
+        assertOutputContains("Got it. I've added this task:\n\t"
+                + "[E][ ] meeting (from: Jan 24 2025, 02:00 pm to: Jan 24 2025, 04:00 pm)");
         assertOutputContains("Bye. Hope to see you soon!");
     }
 

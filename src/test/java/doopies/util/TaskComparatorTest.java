@@ -1,13 +1,13 @@
 package doopies.util;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import doopies.notebook.Deadline;
 import doopies.notebook.Event;
 import doopies.notebook.Task;
 import doopies.notebook.ToDo;
-
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TaskComparatorTest {
 

@@ -7,7 +7,8 @@ import doopies.userinterface.Ui;
 /**
  * Represent an abstract command in the doopies.Doopies application.
  * <p>
- *     Each command performs a specific action and may modify the notebook, interact with the user interface, or access storage.
+ *     Each command performs a specific action and may modify the notebook,
+ *     interact with the user interface, or access storage.
  * </p>
  */
 public abstract class Command {

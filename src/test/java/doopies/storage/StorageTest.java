@@ -1,19 +1,19 @@
 package doopies.storage;
 
-import doopies.notebook.Deadline;
-import doopies.notebook.Event;
-import doopies.notebook.Notebook;
-import doopies.notebook.ToDo;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import doopies.notebook.Deadline;
+import doopies.notebook.Event;
+import doopies.notebook.Notebook;
+import doopies.notebook.ToDo;
 
 public class StorageTest {
     private Storage storage;
@@ -42,7 +42,8 @@ public class StorageTest {
 
         assertEquals(3, loadedNotebook.size());
         assertEquals("[T][ ] read book", loadedNotebook.getTask(1).toString());
-        assertEquals("[E][ ] meeting (from: Jan 24 2025, 02:00 pm to: Jan 24 2025, 04:00 pm)", loadedNotebook.getTask(2).toString());
+        assertEquals("[E][ ] meeting (from: Jan 24 2025, 02:00 pm to: Jan 24 2025, 04:00 pm)",
+                loadedNotebook.getTask(2).toString());
         assertEquals("[D][ ] return book (by: Jan 31 2025, 11:59 pm)", loadedNotebook.getTask(3).toString());
     }
 

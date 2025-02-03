@@ -1,5 +1,12 @@
 package doopies.storage;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
 import doopies.exception.InvalidTaskTypeException;
 import doopies.notebook.Deadline;
 import doopies.notebook.Event;
@@ -7,13 +14,6 @@ import doopies.notebook.Notebook;
 import doopies.notebook.Task;
 import doopies.notebook.ToDo;
 import doopies.util.TaskComparator;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Handles storage operations for saving and loading tasks to and from a file.
@@ -71,10 +71,10 @@ public class Storage {
         String description = parts[2];
 
         return switch (type) {
-            case "T" -> new ToDo(description, isDone);
-            case "D" -> new Deadline(description, isDone, parts[3]);
-            case "E" -> new Event(description, isDone, parts[3], parts[4]);
-            default -> throw new InvalidTaskTypeException("Invalid task type");
+        case "T" -> new ToDo(description, isDone);
+        case "D" -> new Deadline(description, isDone, parts[3]);
+        case "E" -> new Event(description, isDone, parts[3], parts[4]);
+        default -> throw new InvalidTaskTypeException("Invalid task type");
         };
     }
 
@@ -105,11 +105,11 @@ public class Storage {
         if (task instanceof ToDo) {
             return String.format("T | %d | %s", task.isDone() ? 1 : 0, task.getTask());
         } else if (task instanceof Deadline) {
-            return String.format("D | %d | %s | %s", task.isDone() ? 1 : 0, task.getTask(),
-                    ((Deadline) task).getDeadline());
+            return String.format("D | %d | %s | %s", task.isDone() ? 1 : 0, task.getTask(), (
+                    (Deadline) task).getDeadline());
         } else if (task instanceof Event) {
-            return String.format("E | %d | %s | %s | %s", task.isDone() ? 1 : 0, task.getTask(),
-                    ((Event) task).getStart(), ((Event) task).getEnd());
+            return String.format("E | %d | %s | %s | %s", task.isDone() ? 1 : 0, task.getTask(), (
+                    (Event) task).getStart(), ((Event) task).getEnd());
         }
         return "";
     }

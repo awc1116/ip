@@ -1,15 +1,15 @@
 package doopies.command;
 
-import doopies.notebook.Notebook;
-import doopies.storage.Storage;
-import doopies.userinterface.Ui;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.IOException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.io.IOException;
+import doopies.notebook.Notebook;
+import doopies.storage.Storage;
+import doopies.userinterface.Ui;
 
 public class EventCommandTest {
     private Storage storage;
@@ -26,11 +26,18 @@ public class EventCommandTest {
         Notebook notebook = new Notebook();
         Ui ui = new Ui();
 
-        EventCommand command = new EventCommand(new String[]{"event meeting", "/from 24/1/2025 1400", "/to 24/1/2025 1600"});
+        EventCommand command = new EventCommand(new String[]{
+            "event meeting",
+            "/from 24/1/2025 1400",
+            "/to 24/1/2025 1600"
+        });
+
         notebook = command.execute(notebook, ui, storage);
 
         assertEquals(1, notebook.size());
-        assertEquals("[E][ ] meeting (from: Jan 24 2025, 02:00 pm to: Jan 24 2025, 04:00 pm)", notebook.getTask(1).toString());
+        assertEquals("[E][ ] meeting (from: Jan 24 2025, "
+                        + "02:00 pm to: Jan 24 2025, 04:00 pm)",
+                notebook.getTask(1).toString());
     }
 
     @Test

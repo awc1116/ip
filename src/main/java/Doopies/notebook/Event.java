@@ -1,10 +1,10 @@
 package doopies.notebook;
 
-import doopies.util.DateFormat;
-import doopies.util.Parser;
-
 import java.time.LocalDateTime;
 import java.util.Optional;
+
+import doopies.util.DateFormat;
+import doopies.util.Parser;
 
 /**
  * Represents an event task in the doopies.Doopies application.

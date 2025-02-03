@@ -1,12 +1,12 @@
 package doopies.command;
 
+import java.util.Arrays;
+import java.util.List;
+
 import doopies.notebook.Notebook;
 import doopies.notebook.Task;
 import doopies.storage.Storage;
 import doopies.userinterface.Ui;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Represents a command to find tasks in the notebook that match a given keyword.

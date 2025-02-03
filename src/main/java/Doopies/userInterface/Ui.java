@@ -10,7 +10,6 @@ import java.util.Scanner;
  * </p>
  */
 public class Ui {
-    private final Scanner sc;
     private static final String LINE = "_".repeat(60);
     private static final String INTRO = String.format("""
                 %s
@@ -27,6 +26,7 @@ public class Ui {
                 """,
             LINE,
             LINE);
+    private final Scanner sc;
 
     /**
      * Constructs a new {@code Ui} instance and initializes the input scanner.

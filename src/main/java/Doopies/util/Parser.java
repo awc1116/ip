@@ -1,5 +1,9 @@
 package doopies.util;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+import java.util.Optional;
+
 import doopies.command.ClearStorageCommand;
 import doopies.command.Command;
 import doopies.command.DeadlineCommand;
@@ -12,10 +16,6 @@ import doopies.command.MarkCommand;
 import doopies.command.ToDoCommand;
 import doopies.command.UnknownCommand;
 import doopies.command.UnmarkCommand;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
-import java.util.Optional;
 
 /**
  * Handles the parsing of user input into commands and dates.
@@ -32,8 +32,9 @@ public class Parser {
     /**
      * Parses the user input into a {@link Command} object.
      * <p>
-     *     This method analyzes the input string, determines the command type, and constructs the appropriate {@link Command}
-     *     object. If the command is unrecognized, an {@link UnknownCommand} is returned.
+     *     This method analyzes the input string, determines the command type,
+     *     and constructs the appropriate {@link Command} object. If the command is unrecognized,
+     *     an {@link UnknownCommand} is returned.
      * </p>
      *
      * @param command The user input string to parse.
@@ -44,17 +45,17 @@ public class Parser {
         String[] cmd = line[0].split(" ");
 
         return switch (cmd[0].toLowerCase()) {
-            case "bye" -> new EndCommand();
-            case "list" -> new ListCommand();
-            case "mark" -> new MarkCommand(cmd);
-            case "unmark" -> new UnmarkCommand(cmd);
-            case "delete" -> new DeleteCommand(cmd);
-            case "clear" -> new ClearStorageCommand();
-            case "find" -> new FindCommand(cmd);
-            case "todo" -> new ToDoCommand(cmd);
-            case "deadline" -> new DeadlineCommand(line);
-            case "event" -> new EventCommand(line);
-            default -> new UnknownCommand();
+        case "bye" -> new EndCommand();
+        case "list" -> new ListCommand();
+        case "mark" -> new MarkCommand(cmd);
+        case "unmark" -> new UnmarkCommand(cmd);
+        case "delete" -> new DeleteCommand(cmd);
+        case "clear" -> new ClearStorageCommand();
+        case "find" -> new FindCommand(cmd);
+        case "todo" -> new ToDoCommand(cmd);
+        case "deadline" -> new DeadlineCommand(line);
+        case "event" -> new EventCommand(line);
+        default -> new UnknownCommand();
         };
     }
 
@@ -66,14 +67,15 @@ public class Parser {
      * </p>
      *
      * @param dateStr The date string to parse.
-     * @return An {@link Optional} containing the parsed {@link LocalDateTime} if successful, or an empty {@link Optional}
-     * if the string cannot be parsed.
+     * @return An {@link Optional} containing the parsed {@link LocalDateTime} if successful,
+     *     or an empty {@link Optional} if the string cannot be parsed.
      */
     public static Optional<LocalDateTime> parseMyDate(String dateStr) {
         for (DateFormat format : DateFormat.values()) {
             try {
                 return Optional.of(LocalDateTime.parse(dateStr, format.getFormatter()));
             } catch (DateTimeParseException ignored) {
+                continue;
             }
         }
         return Optional.empty();
