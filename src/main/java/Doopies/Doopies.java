@@ -1,3 +1,5 @@
+package doopies;
+
 import doopies.command.Command;
 import doopies.notebook.Notebook;
 import doopies.storage.Storage;
@@ -8,24 +10,17 @@ import java.io.IOException;
 import java.util.NoSuchElementException;
 
 /**
- * Represents the main entry point for the Doopies application.
+ * Represents the main entry point for the doopies.Doopies application.
  * Handles the initialization of the application, execution of commands, and user interaction.
  */
 public class Doopies {
-    /** File path for storing tasks. */
     private static final String FILE_PATH = "./data/doopies.txt";
-
-    /** Storage for saving and loading tasks from a file. */
     private final Storage storage;
-
-    /** User interface for interacting with the user. */
     private final Ui ui;
-
-    /** Notebook to manage tasks in memory. */
     private Notebook notebook;
 
     /**
-     * Constructs a new Doopies application instance with the specific file path for task storage.
+     * Constructs a new doopies.Doopies application instance with the specific file path for task storage.
      *
      * @param filePath Path to the file for storing and loading tasks.
      */
@@ -61,7 +56,7 @@ public class Doopies {
     }
 
     /**
-     * The main method that start the Doopies application.
+     * The main method that start the doopies.Doopies application.
      *
      * @param args Command-line arguments (not used).
      */

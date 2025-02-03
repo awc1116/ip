@@ -3,17 +3,15 @@ package doopies.userinterface;
 import java.util.Scanner;
 
 /**
- * Handles user interactions in the Doopies application.
+ * Handles user interactions in the doopies.Doopies application.
  * <p>
  *     The {@code Ui} class provides methods to display messages, read user input,
  *     and manage the lifecycle of the user interface.
  * </p>
  */
 public class Ui {
-    /** The line separator used for formatting output messages. */
+    private final Scanner sc;
     private static final String LINE = "_".repeat(60);
-
-    /** The welcome message displayed when the application starts. */
     private static final String INTRO = String.format("""
                 %s
                 Hello! I'm Doopies
@@ -22,8 +20,6 @@ public class Ui {
                 """,
             LINE,
             LINE);
-
-    /** The goodbye message displayed when the application exits. */
     private static final String END = String.format("""
                 %s
                 Bye. Hope to see you soon!
@@ -32,13 +28,11 @@ public class Ui {
             LINE,
             LINE);
 
-    /** The scanner for reading user input from the console. */
-    private final Scanner sc;
-
     /**
      * Constructs a new {@code Ui} instance and initializes the input scanner.
      */
     public Ui() {
+
         this.sc = new Scanner(System.in);
     }
 
@@ -46,6 +40,7 @@ public class Ui {
      * Displays the welcome message to the user.
      */
     public void showWelcome() {
+
         System.out.println(INTRO);
     }
 
@@ -53,6 +48,7 @@ public class Ui {
      * Displays the goodbye message to the user.
      */
     public void showEnding() {
+
         System.out.println(END);
     }
 
@@ -65,6 +61,7 @@ public class Ui {
      * @param message The message to display.
      */
     public void showMessage(String message) {
+
         System.out.println(LINE + "\n" + message + "\n" + LINE);
     }
 
@@ -77,6 +74,7 @@ public class Ui {
      * @return The command entered by the user.
      */
     public String readCommand() {
+
         return this.sc.nextLine();
     }
 
@@ -88,6 +86,7 @@ public class Ui {
      * </p>
      */
     public void closeUi() {
+
         this.sc.close();
     }
 }

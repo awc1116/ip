@@ -17,7 +17,6 @@ import java.util.Arrays;
  * </p>
  */
 public class EventCommand extends Command {
-    /** The parsed input line containing the task description, start time, and end time. */
     private final String[] line;
 
     /**
@@ -30,17 +29,8 @@ public class EventCommand extends Command {
         this.line = line;
     }
 
-    /**
-     * Translates a portion of the parsed input line into a single string.
-     * <p>
-     *     The translation joins all elements of the input array after the first element into a single string,
-     *     preserving spaces between words.
-     * </p>
-     *
-     * @param cmd The array of input tokens to translate.
-     * @return The translated string containing all elements after the first token.
-     */
     private String translate(String[] cmd) {
+
         return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
     }
 

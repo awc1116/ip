@@ -12,13 +12,13 @@ import java.util.List;
  * </p>
  */
 public class Notebook {
-    /** The list of tasks stored in the notebook. */
     private final List<Task> list;
 
     /**
      * Constructs an empty notebook.
      */
     public Notebook() {
+
         this.list = List.of();
     }
 
@@ -28,6 +28,7 @@ public class Notebook {
      * @param list The list of tasks to initialize the notebook with.
      */
     public Notebook(List<Task> list) {
+
         this.list = list;
     }
 
@@ -88,6 +89,7 @@ public class Notebook {
      * @return The total number of tasks in the notebook.
      */
     public int size() {
+
         return this.list.size();
     }
 
@@ -108,6 +110,7 @@ public class Notebook {
      * @return A list of all tasks in the notebook.
      */
     public List<Task> getAllTasks() {
+
         return this.list;
     }
 

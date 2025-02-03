@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
- * Represents an event task in the Doopies application.
+ * Represents an event task in the doopies.Doopies application.
  * <p>
  *     An event task contains a description, a start time, and an end time.
  *     It can be marked as done or not done and supports a string representation
@@ -15,16 +15,9 @@ import java.util.Optional;
  * </p>
  */
 public class Event extends Task {
-    /** The raw string representation of the start time provided by the user. */
     private final String start;
-
-    /** The raw string representation of the end time provided by the user. */
     private final String end;
-
-    /** The parsed start time as a {@link LocalDateTime}, if successfully parsed. */
     private final Optional<LocalDateTime> startDate;
-
-    /** The parsed end time as a {@link LocalDateTime}, if successfully parsed. */
     private final Optional<LocalDateTime> endDate;
 
     /**
@@ -95,6 +88,7 @@ public class Event extends Task {
      * @return The start time of the event, or {@link LocalDateTime#MAX} if the date is invalid.
      */
     public LocalDateTime getStartDateTime() {
+
         return this.startDate.orElse(LocalDateTime.MAX);
     }
 
@@ -107,6 +101,7 @@ public class Event extends Task {
      */
     @Override
     public Event mark() {
+
         return new Event(this.getTask(), true, this.start, this.end);
     }
 
@@ -119,6 +114,7 @@ public class Event extends Task {
      */
     @Override
     public Event unmark() {
+
         return new Event(this.getTask(), false, this.start, this.end);
     }
 
@@ -133,6 +129,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
+
         return String.format("[E]%s (from: %s to: %s)", super.toString(), this.getStart(), this.getEnd());
     }
 }

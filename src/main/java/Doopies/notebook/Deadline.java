@@ -7,17 +7,14 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
- * Represents a deadline task in the Doopies application.
+ * Represents a deadline task in the doopies.Doopies application.
  * <p>
  *     A deadline task contains a description and a due date. It can be marked as done or not done and supports
  *     a string representation that includes its due date.
  * </p>
  */
 public class Deadline extends Task {
-    /** The raw string representation of the deadline date provided by the user. */
     private final String deadline;
-
-    /** The parsed due date as a {@link LocalDateTime}, if successfully parsed. */
     private final Optional<LocalDateTime> dueDate;
 
     /**
@@ -68,6 +65,7 @@ public class Deadline extends Task {
      * @return The due date of the task, or {@link LocalDateTime#MAX} if the date is invalid.
      */
     public LocalDateTime getDeadlineDateTime() {
+
         return this.dueDate.orElse(LocalDateTime.MAX);
     }
 
@@ -80,6 +78,7 @@ public class Deadline extends Task {
      */
     @Override
     public Deadline mark() {
+
         return new Deadline(this.getTask(), true, this.deadline);
     }
 
@@ -92,6 +91,7 @@ public class Deadline extends Task {
      */
     @Override
     public Deadline unmark() {
+
         return new Deadline(this.getTask(), false, this.deadline);
     }
 
@@ -106,6 +106,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
+
         return String.format("[D]%s (by: %s)", super.toString(), this.getDeadline());
     }
 }

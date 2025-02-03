@@ -15,7 +15,6 @@ import java.io.IOException;
  * </p>
  */
 public class UnmarkCommand extends Command {
-    /** The parsed command arguments, including the task index to be unmarked. */
     private final String[] cmd;
 
     /**

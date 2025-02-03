@@ -5,28 +5,21 @@ import doopies.storage.Storage;
 import doopies.userinterface.Ui;
 
 /**
- * Represent an abstract command in the Doopies application.
+ * Represent an abstract command in the doopies.Doopies application.
  * <p>
  *     Each command performs a specific action and may modify the notebook, interact with the user interface, or access storage.
  * </p>
  */
 public abstract class Command {
-    /** Indicates whether this command signals the application to exit. */
     private final boolean exit;
 
-    /**
-     * Constructs a command that does not signal the application to exit.
-     */
     protected Command() {
+
         this.exit = false;
     }
 
-    /**
-     * Constructs a command with the specific exit behavior.
-     *
-     * @param exit {@code true} if this command signals the application to terminate; {@code false} otherwise.
-     */
     protected Command(boolean exit) {
+
         this.exit = exit;
     }
 
@@ -36,6 +29,7 @@ public abstract class Command {
      * @return {@code true} if the command signals the application to terminate; {@code false} otherwise.
      */
     public boolean isExit() {
+
         return this.exit;
     }
 

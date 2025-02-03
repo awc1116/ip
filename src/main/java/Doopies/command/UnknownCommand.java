@@ -18,6 +18,7 @@ public class UnknownCommand extends Command {
      * Constructs an UnknownCommand.
      */
     public UnknownCommand() {
+
         super();
     }
 

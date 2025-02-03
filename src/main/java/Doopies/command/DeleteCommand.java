@@ -16,7 +16,6 @@ import java.io.IOException;
  * </p>
  */
 public class DeleteCommand extends Command {
-    /** The parsed input command containing the delete action and the task index. */
     private final String[] cmd;
 
     /**

@@ -23,7 +23,6 @@ import java.util.List;
  * </p>
  */
 public class Storage {
-    /** The path to the file used for storing tasks. */
     private final Path filePath;
 
     /**
@@ -32,6 +31,7 @@ public class Storage {
      * @param filePath The path to the file used for storing tasks.
      */
     public Storage(String filePath) {
+
         this.filePath = Paths.get(filePath);
     }
 
@@ -64,13 +64,6 @@ public class Storage {
         return new Notebook(tasks);
     }
 
-    /**
-     * Parses a line from the storage file into a {@link Task}.
-     *
-     * @param line The line to parse.
-     * @return The task represented by the line.
-     * @throws InvalidTaskTypeException If the line does not represent a valid task type.
-     */
     private Task parseTask(String line) throws InvalidTaskTypeException {
         String[] parts = line.split(" \\| ");
         String type = parts[0];
@@ -108,12 +101,6 @@ public class Storage {
         Files.write(this.filePath, lines);
     }
 
-    /**
-     * Converts a {@link Task} into a line suitable for storage in the file.
-     *
-     * @param task The task to serialize.
-     * @return A formatted string representing the task.
-     */
     private String serializeTask(Task task) {
         if (task instanceof ToDo) {
             return String.format("T | %d | %s", task.isDone() ? 1 : 0, task.getTask());
@@ -133,6 +120,7 @@ public class Storage {
      * @throws IOException If an error occurs while writing to the file.
      */
     public void clear() throws IOException {
+
         Files.write(this.filePath, new ArrayList<String>());
     }
 }

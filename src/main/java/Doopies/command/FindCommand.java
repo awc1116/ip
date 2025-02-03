@@ -16,7 +16,6 @@ import java.util.List;
  * </p>
  */
 public class FindCommand extends Command {
-    /** The keyword used to search for matching tasks. */
     private final String keyword;
 
     /**
@@ -29,17 +28,8 @@ public class FindCommand extends Command {
         this.keyword = translate(cmd);
     }
 
-    /**
-     * Translates the parsed input command into a single keyword.
-     * <p>
-     *     This method joins all elements of the input array after the first element into a single string,
-     *     preserving spaces between words.
-     * </p>
-     *
-     * @param cmd The array of input tokens to translate.
-     * @return The translated keyword for searching tasks.
-     */
     private String translate(String[] cmd) {
+
         return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
     }
 

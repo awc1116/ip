@@ -1,17 +1,14 @@
 package doopies.notebook;
 
 /**
- * Represents an abstract task in the Doopies application.
+ * Represents an abstract task in the doopies.Doopies application.
  * <p>
  * A task contains a description and a completion status. Subclasses of {@code Task} must provide
  * implementations for marking and unmarking the task.
  * </p>
  */
 public abstract class Task {
-    /** The description of the task. */
     private final String task;
-
-    /** Indicates whether the task is marked as done. */
     private final boolean done;
 
     /**
@@ -41,6 +38,7 @@ public abstract class Task {
      * @return {@code true} if the task is marked as done; {@code false} otherwise.
      */
     public boolean isDone() {
+
         return this.done;
     }
 
@@ -50,6 +48,7 @@ public abstract class Task {
      * @return The description of the task.
      */
     public String getTask() {
+
         return this.task;
     }
 

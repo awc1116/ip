@@ -17,7 +17,6 @@ import java.util.Arrays;
  * </p>
  */
 public class ToDoCommand extends Command {
-    /** The parsed input command containing the todo action and task description. */
     private final String[] cmd;
 
     /**
@@ -30,17 +29,8 @@ public class ToDoCommand extends Command {
         this.cmd = cmd;
     }
 
-    /**
-     * Translates the parsed input command into a single string.
-     * <p>
-     * The translation joins all elements of the input array after the first element into a single string,
-     * preserving spaces between words.
-     * </p>
-     *
-     * @param cmd The array of input tokens to translate.
-     * @return The translated string containing the task description.
-     */
     private String translate(String[] cmd) {
+
         return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
     }
 

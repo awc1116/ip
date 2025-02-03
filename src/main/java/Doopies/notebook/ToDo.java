@@ -1,7 +1,7 @@
 package doopies.notebook;
 
 /**
- * Represents a todo task in the Doopies application.
+ * Represents a todo task in the doopies.Doopies application.
  * <p>
  * A todo task is a simple task with no specific date or time attached.
  * It can be marked as done or not done and supports a string representation.
@@ -15,6 +15,7 @@ public class ToDo extends Task {
      * @param task The description of the todo task.
      */
     public ToDo(String task) {
+
         super(task);
     }
 
@@ -25,6 +26,7 @@ public class ToDo extends Task {
      * @param done The completion status of the todo task.
      */
     public ToDo(String task, boolean done) {
+
         super(task, done);
     }
 
@@ -37,6 +39,7 @@ public class ToDo extends Task {
      */
     @Override
     public ToDo mark() {
+
         return new ToDo(this.getTask(), true);
     }
 
@@ -49,6 +52,7 @@ public class ToDo extends Task {
      */
     @Override
     public ToDo unmark() {
+
         return new ToDo(this.getTask(), false);
     }
 
@@ -63,6 +67,7 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
+
         return String.format("[T]%s", super.toString());
     }
 }

@@ -15,7 +15,6 @@ import java.io.IOException;
  * </p>
  */
 public class MarkCommand extends Command {
-    /** The parsed input command containing the mark action and the task index. */
     private final String[] cmd;
 
     /**

@@ -8,7 +8,7 @@ import doopies.notebook.ToDo;
 import java.util.Comparator;
 
 /**
- * A comparator for sorting tasks in the Doopies application.
+ * A comparator for sorting tasks in the doopies.Doopies application.
  * <p>
  * The {@code TaskComparator} sorts tasks based on their type and specific criteria:
  * <ul>
