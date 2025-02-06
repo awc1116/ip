@@ -3,11 +3,15 @@ package doopies.userinterface;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -31,12 +35,18 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
+    @FXML
+    private Label titleLabel;
+    @FXML
+    private ImageView logoImage;
+    @FXML
+    private HBox titleBar;
 
     private Doopies doopies;
-    private final Image userImage = new Image(this.getClass()
-            .getResourceAsStream("/images/userImage.jpg"));
-    private final Image doopiesImage = new Image(this.getClass()
-            .getResourceAsStream("/images/doopies_logo.jpg"));
+
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/userImage.jpg"));
+
+    private final Image doopiesImage = new Image(this.getClass().getResourceAsStream("/images/doopies_logo.jpg"));
 
     /**
      * Initializes the main window.
@@ -47,8 +57,21 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     public void initialize() {
-        this.scrollPane.vvalueProperty().bind(
-                this.dialogContainer.heightProperty());
+        this.scrollPane.vvalueProperty().bind(this.dialogContainer.heightProperty());
+        this.scrollPane.setFitToHeight(false);
+        this.scrollPane.setFitToWidth(true);
+        this.scrollPane.setOnScroll(event -> {
+            double deltaY = event.getDeltaY() * -1; // Reverse direction if needed
+            this.scrollPane.setVvalue(this.scrollPane.getVvalue() + deltaY / this.scrollPane.getHeight());
+            event.consume();
+        });
+        this.scrollPane.setPannable(true);
+
+        this.logoImage.setImage(this.doopiesImage);
+        this.logoImage.setFitHeight(70);
+        this.logoImage.setFitWidth(70);
+        Circle clip = new Circle(35, 25, 20);
+        this.logoImage.setClip(clip);
     }
 
     public void showWelcomeMessage() {
