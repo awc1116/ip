@@ -1,6 +1,7 @@
 package doopies.notebook;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -38,9 +39,9 @@ public class Notebook {
      * @param task The task to be added to the notebook.
      * @return A new notebook containing the added task.
      */
-    public Notebook add(Task task) {
+    public Notebook add(Task... task) {
         List<Task> newList = new ArrayList<>(this.list);
-        newList.add(task);
+        newList.addAll(Arrays.asList(task));
         return new Notebook(newList.stream().toList());
     }
 
