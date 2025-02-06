@@ -41,7 +41,9 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDoopies(this.doopies);
+            MainWindow controller = fxmlLoader.getController();
+            controller.setDoopies(this.doopies);
+            controller.showWelcomeMessage();
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

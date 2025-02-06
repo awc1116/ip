@@ -13,6 +13,7 @@ import doopies.command.EventCommand;
 import doopies.command.FindCommand;
 import doopies.command.ListCommand;
 import doopies.command.MarkCommand;
+import doopies.command.StartCommand;
 import doopies.command.ToDoCommand;
 import doopies.command.UnknownCommand;
 import doopies.command.UnmarkCommand;
@@ -55,6 +56,7 @@ public class Parser {
         case "todo" -> new ToDoCommand(cmd);
         case "deadline" -> new DeadlineCommand(line);
         case "event" -> new EventCommand(line);
+        case "start" -> new StartCommand();
         default -> new UnknownCommand();
         };
     }

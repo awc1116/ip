@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
 
 /**
  * Represents a dialog box used in the {@code Doopies} application's user interface.
@@ -44,7 +45,14 @@ public class DialogBox extends HBox {
         }
 
         this.dialog.setText(text);
+
         this.displayPicture.setImage(img);
+        this.displayPicture.setFitWidth(76);
+        this.displayPicture.setFitHeight(76);
+        Circle clip = new Circle(25);
+        clip.setCenterX(this.displayPicture.getFitWidth() / 2);
+        clip.setCenterY(this.displayPicture.getFitHeight() / 2 - 12);
+        this.displayPicture.setClip(clip);
     }
 
     private void flip() {

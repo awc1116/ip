@@ -1,5 +1,6 @@
 package doopies.userinterface;
 
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -7,6 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * Represents the main user interface window for the {@code Doopies} application.
@@ -48,6 +51,15 @@ public class MainWindow extends AnchorPane {
                 this.dialogContainer.heightProperty());
     }
 
+    public void showWelcomeMessage() {
+        if (this.doopies != null) {
+            String welcomeMessage = this.doopies.getResponse("start");
+            this.dialogContainer.getChildren().add(
+                    DialogBox.getDoopiesDialog(welcomeMessage, this.doopiesImage)
+            );
+        }
+    }
+
     /**
      * Sets the {@code Doopies} instance for the UI to interact with.
      *
@@ -66,5 +78,14 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDoopiesDialog(response, this.doopiesImage)
         );
         this.userInput.clear();
+
+        if (input.trim().equalsIgnoreCase("bye")) {
+            PauseTransition delay = new PauseTransition(Duration.seconds(0.5));
+            delay.setOnFinished(event -> {
+                Stage stage = (Stage) this.dialogContainer.getScene().getWindow();
+                stage.close();
+            });
+            delay.play();
+        }
     }
 }
