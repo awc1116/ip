@@ -1,17 +1,17 @@
 package doopies.command;
 
-import doopies.notebook.Notebook;
-import doopies.storage.Storage;
-import doopies.userinterface.Ui;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import doopies.notebook.Notebook;
+import doopies.storage.Storage;
+import doopies.userinterface.Ui;
 
 public class ClearStorageCommandTest {
     private Storage storage;

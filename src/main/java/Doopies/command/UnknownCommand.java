@@ -37,8 +37,8 @@ public class UnknownCommand extends Command {
     @Override
     public Notebook execute(Notebook notebook, Ui ui, Storage storage) {
         try {
-            throw new UnknownCommandException("OOPS!!! I'm sorry, " +
-                    "but I don't know what that means :-(");
+            throw new UnknownCommandException("OOPS!!! I'm sorry, "
+                    + "but I don't know what that means :-(");
         } catch (UnknownCommandException e) {
             ui.showMessage(e.getMessage());
         }

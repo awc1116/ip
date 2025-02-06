@@ -1,14 +1,16 @@
 package doopies.userinterface;
 
+import java.util.Scanner;
+
 /**
- * Handles user interactions in the doopies.userinterface.Doopies application.
+ * Handles user interactions in the doopies.Doopies application.
  * <p>
  *     The {@code Ui} class provides methods to display messages, read user input,
  *     and manage the lifecycle of the user interface.
  * </p>
  */
 public class Ui {
-    private String message;
+    private final Scanner sc;
     private static final String LINE = "_".repeat(60);
     private static final String INTRO = String.format("""
                 %s
@@ -27,11 +29,19 @@ public class Ui {
             LINE);
 
     /**
+     * Constructs a new {@code Ui} instance and initializes the input scanner.
+     */
+    public Ui() {
+
+        this.sc = new Scanner(System.in);
+    }
+
+    /**
      * Displays the welcome message to the user.
      */
     public void showWelcome() {
 
-        this.message = INTRO;
+        System.out.println(INTRO);
     }
 
     /**
@@ -39,7 +49,7 @@ public class Ui {
      */
     public void showEnding() {
 
-        this.message = END;
+        System.out.println(END);
     }
 
     /**
@@ -52,10 +62,31 @@ public class Ui {
      */
     public void showMessage(String message) {
 
-        this.message = LINE + "\n" + message + "\n" + LINE;
+        System.out.println(LINE + "\n" + message + "\n" + LINE);
     }
 
-    public String getLastMessage() {
-        return this.message;
+    /**
+     * Reads a command entered by the user.
+     * <p>
+     *     This method waits for input from the console and returns the entered command as a string.
+     * </p>
+     *
+     * @return The command entered by the user.
+     */
+    public String readCommand() {
+
+        return this.sc.nextLine();
+    }
+
+    /**
+     * Closes the user interface.
+     * <p>
+     *     This method closes the scanner and releases any associated system resources.
+     *     It should be called when the application is shutting down.
+     * </p>
+     */
+    public void closeUi() {
+
+        this.sc.close();
     }
 }

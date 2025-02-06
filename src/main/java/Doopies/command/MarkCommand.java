@@ -1,11 +1,11 @@
 package doopies.command;
 
+import java.io.IOException;
+
 import doopies.exception.IndexOutOfBoundException;
 import doopies.notebook.Notebook;
 import doopies.storage.Storage;
 import doopies.userinterface.Ui;
-
-import java.io.IOException;
 
 /**
  * Represents a command to mark a task in the notebook as completed.

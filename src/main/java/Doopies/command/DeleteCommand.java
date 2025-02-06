@@ -1,18 +1,19 @@
 package doopies.command;
 
+import java.io.IOException;
+
 import doopies.exception.IndexOutOfBoundException;
 import doopies.notebook.Notebook;
 import doopies.notebook.Task;
 import doopies.storage.Storage;
 import doopies.userinterface.Ui;
 
-import java.io.IOException;
-
 /**
  * Represents a command to delete a task from the notebook.
  * <p>
  *     The command removes a task at a specified index from the notebook, saves the updated notebook to storage,
- *     and displays a confirmation message to the user. If the index is invalid or out of bounds, an error message is displayed.
+ *     and displays a confirmation message to the user. If the index is invalid or out of bounds,
+ *     an error message is displayed.
  * </p>
  */
 public class DeleteCommand extends Command {

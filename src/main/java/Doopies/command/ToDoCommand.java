@@ -1,13 +1,13 @@
 package doopies.command;
 
+import java.io.IOException;
+import java.util.Arrays;
+
 import doopies.exception.EmptyDescriptionException;
 import doopies.notebook.Notebook;
 import doopies.notebook.ToDo;
 import doopies.storage.Storage;
 import doopies.userinterface.Ui;
-
-import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * Represents a command to add a todo task to the notebook.
@@ -54,8 +54,8 @@ public class ToDoCommand extends Command {
             String description = translate(this.cmd);
 
             if (description.isEmpty()) {
-                throw new EmptyDescriptionException("OOPS!!! " +
-                        "The description of a todo cannot be empty.");
+                throw new EmptyDescriptionException("OOPS!!! "
+                        + "The description of a todo cannot be empty.");
             }
 
             ToDo todo = new ToDo(description);

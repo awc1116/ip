@@ -1,11 +1,11 @@
 package doopies.notebook;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 public class EventTest {
 
@@ -33,7 +33,8 @@ public class EventTest {
 
         assertNotSame(markedEvent, unmarkedEvent);
         assertFalse(unmarkedEvent.isDone());
-        assertEquals("[E][ ] meeting (from: Jan 24 2025, 02:00 pm to: Jan 24 2025, 04:00 pm)", unmarkedEvent.toString());
+        assertEquals("[E][ ] meeting (from: Jan 24 2025, 02:00 pm to: Jan 24 2025, 04:00 pm)",
+                unmarkedEvent.toString());
     }
 
     @Test

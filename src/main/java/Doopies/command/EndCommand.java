@@ -7,8 +7,9 @@ import doopies.userinterface.Ui;
 /**
  * Represents a command to terminate the doopies.userinterface.Doopies application.
  * <p>
- * This command signals the application to exit by displaying a farewell message to the user and closing the user interface.
- * The in-memory notebook remains unchanged, and no modifications are made to the storage system.
+ *     This command signals the application to exit by displaying a farewell message to the user
+ *     and closing the user interface. The in-memory notebook remains unchanged, and no modifications
+ *     are made to the storage system.
  * </p>
  */
 public class EndCommand extends Command {

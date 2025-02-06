@@ -1,16 +1,16 @@
 package doopies.command;
 
-import doopies.notebook.Notebook;
-import doopies.storage.Storage;
-import doopies.userinterface.Ui;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import doopies.notebook.Notebook;
+import doopies.storage.Storage;
+import doopies.userinterface.Ui;
 
 public class UnknownCommandTest {
     private Storage storage;
