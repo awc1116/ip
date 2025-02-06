@@ -8,7 +8,26 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    javaFxVersion = '17.0.7'
+    osName = System.getProperty("os.name").toLowerCase()
+
+    // Detect OS and set the correct JavaFX classifier
+    if (osName.contains("win")) {
+        javafxClassifier = "win"
+    } else if (osName.contains("mac")) {
+        javafxClassifier = "mac"
+    } else {
+        javafxClassifier = "linux"
+    }
+}
+
 dependencies {
+    implementation "org.openjfx:javafx-base:${javaFxVersion}:${javafxClassifier}"
+    implementation "org.openjfx:javafx-controls:${javaFxVersion}:${javafxClassifier}"
+    implementation "org.openjfx:javafx-fxml:${javaFxVersion}:${javafxClassifier}"
+    implementation "org.openjfx:javafx-graphics:${javaFxVersion}:${javafxClassifier}"
+
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.10.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.10.0'
 }
@@ -28,7 +47,7 @@ test {
 }
 
 application {
-    mainClass.set("doopies.Doopies")
+    mainClass.set("doopies.userinterface.Main")
 }
 
 shadowJar {
@@ -38,4 +57,8 @@ shadowJar {
 
 run{
     standardInput = System.in
+    jvmArgs = [
+            "--module-path", classpath.asPath,
+            "--add-modules", "javafx.controls,javafx.fxml"
+    ]
 }
