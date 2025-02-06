@@ -1,13 +1,13 @@
 package doopies.notebook;
 
-import doopies.util.DateFormat;
-import doopies.util.Parser;
-
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import doopies.util.DateFormat;
+import doopies.util.Parser;
+
 /**
- * Represents an event task in the doopies.Doopies application.
+ * Represents an event task in the doopies.userinterface.Doopies application.
  * <p>
  *     An event task contains a description, a start time, and an end time.
  *     It can be marked as done or not done and supports a string representation

@@ -3,7 +3,7 @@ package doopies.util;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents various date and time formats used in the doopies.Doopies application.
+ * Represents various date and time formats used in the doopies.userinterface.Doopies application.
  * <p>
  * This enum defines both input formats (for parsing user-provided dates)
  * and an output format (for displaying dates to the user).

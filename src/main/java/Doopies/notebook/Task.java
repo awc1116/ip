@@ -1,7 +1,7 @@
 package doopies.notebook;
 
 /**
- * Represents an abstract task in the doopies.Doopies application.
+ * Represents an abstract task in the doopies.userinterface.Doopies application.
  * <p>
  * A task contains a description and a completion status. Subclasses of {@code Task} must provide
  * implementations for marking and unmarking the task.

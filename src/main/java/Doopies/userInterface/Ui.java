@@ -1,16 +1,14 @@
 package doopies.userinterface;
 
-import java.util.Scanner;
-
 /**
- * Handles user interactions in the doopies.Doopies application.
+ * Handles user interactions in the doopies.userinterface.Doopies application.
  * <p>
  *     The {@code Ui} class provides methods to display messages, read user input,
  *     and manage the lifecycle of the user interface.
  * </p>
  */
 public class Ui {
-    private final Scanner sc;
+    private String message;
     private static final String LINE = "_".repeat(60);
     private static final String INTRO = String.format("""
                 %s
@@ -29,19 +27,11 @@ public class Ui {
             LINE);
 
     /**
-     * Constructs a new {@code Ui} instance and initializes the input scanner.
-     */
-    public Ui() {
-
-        this.sc = new Scanner(System.in);
-    }
-
-    /**
      * Displays the welcome message to the user.
      */
     public void showWelcome() {
 
-        System.out.println(INTRO);
+        this.message = INTRO;
     }
 
     /**
@@ -49,7 +39,7 @@ public class Ui {
      */
     public void showEnding() {
 
-        System.out.println(END);
+        this.message = END;
     }
 
     /**
@@ -62,31 +52,10 @@ public class Ui {
      */
     public void showMessage(String message) {
 
-        System.out.println(LINE + "\n" + message + "\n" + LINE);
+        this.message = LINE + "\n" + message + "\n" + LINE;
     }
 
-    /**
-     * Reads a command entered by the user.
-     * <p>
-     *     This method waits for input from the console and returns the entered command as a string.
-     * </p>
-     *
-     * @return The command entered by the user.
-     */
-    public String readCommand() {
-
-        return this.sc.nextLine();
-    }
-
-    /**
-     * Closes the user interface.
-     * <p>
-     *     This method closes the scanner and releases any associated system resources.
-     *     It should be called when the application is shutting down.
-     * </p>
-     */
-    public void closeUi() {
-
-        this.sc.close();
+    public String getLastMessage() {
+        return this.message;
     }
 }

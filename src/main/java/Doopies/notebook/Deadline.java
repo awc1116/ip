@@ -1,13 +1,13 @@
 package doopies.notebook;
 
-import doopies.util.DateFormat;
-import doopies.util.Parser;
-
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import doopies.util.DateFormat;
+import doopies.util.Parser;
+
 /**
- * Represents a deadline task in the doopies.Doopies application.
+ * Represents a deadline task in the doopies.userinterface.Doopies application.
  * <p>
  *     A deadline task contains a description and a due date. It can be marked as done or not done and supports
  *     a string representation that includes its due date.

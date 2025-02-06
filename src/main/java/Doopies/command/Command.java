@@ -5,7 +5,7 @@ import doopies.storage.Storage;
 import doopies.userinterface.Ui;
 
 /**
- * Represent an abstract command in the doopies.Doopies application.
+ * Represent an abstract command in the doopies.userinterface.Doopies application.
  * <p>
  *     Each command performs a specific action and may modify the notebook, interact with the user interface, or access storage.
  * </p>

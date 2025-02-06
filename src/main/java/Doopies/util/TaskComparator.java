@@ -1,14 +1,14 @@
 package doopies.util;
 
+import java.util.Comparator;
+
 import doopies.notebook.Deadline;
 import doopies.notebook.Event;
 import doopies.notebook.Task;
 import doopies.notebook.ToDo;
 
-import java.util.Comparator;
-
 /**
- * A comparator for sorting tasks in the doopies.Doopies application.
+ * A comparator for sorting tasks in the doopies.userinterface.Doopies application.
  * <p>
  * The {@code TaskComparator} sorts tasks based on their type and specific criteria:
  * <ul>

@@ -1,7 +1,7 @@
 package doopies.notebook;
 
 /**
- * Represents a todo task in the doopies.Doopies application.
+ * Represents a todo task in the doopies.userinterface.Doopies application.
  * <p>
  * A todo task is a simple task with no specific date or time attached.
  * It can be marked as done or not done and supports a string representation.
