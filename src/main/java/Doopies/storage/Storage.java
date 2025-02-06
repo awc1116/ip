@@ -18,8 +18,13 @@ import doopies.util.TaskComparator;
 /**
  * Handles storage operations for saving and loading tasks to and from a file.
  * <p>
- *     The {@code Storage} class provides methods to save tasks from a {@link Notebook} to disk,
- *     load tasks from disk into a {@link Notebook}, and clear the stored tasks.
+ * The {@code Storage} class provides methods to:
+ * <ul>
+ *     <li>Save tasks from a {@link Notebook} to disk.</li>
+ *     <li>Load tasks from disk into a {@link Notebook}.</li>
+ *     <li>Clear the stored tasks.</li>
+ * </ul>
+ * The tasks are stored in a structured format to facilitate reading and writing operations.
  * </p>
  */
 public class Storage {
@@ -31,15 +36,14 @@ public class Storage {
      * @param filePath The path to the file used for storing tasks.
      */
     public Storage(String filePath) {
-
         this.filePath = Paths.get(filePath);
     }
 
     /**
      * Loads tasks from the storage file into a {@link Notebook}.
      * <p>
-     *     If the file does not exist, it is created along with any necessary directories. Invalid
-     *     task lines in the file are skipped, and a warning is logged to the console.
+     * If the file does not exist, it is created along with any necessary directories.
+     * Invalid task lines in the file are skipped, and a warning is logged to the console.
      * </p>
      *
      * @return A {@link Notebook} containing the tasks loaded from the file.
@@ -81,10 +85,10 @@ public class Storage {
     /**
      * Saves tasks from a {@link Notebook} to the storage file.
      * <p>
-     *     The tasks are saved in a sorted order defined by the {@link TaskComparator}.
+     * The tasks are saved in a structured format and sorted based on the {@link TaskComparator}.
      * </p>
      *
-     * @param notebook The notebook containing the tasks to save.
+     * @param notebook The {@link Notebook} containing the tasks to save.
      * @throws IOException If an error occurs while writing to the file.
      */
     public void save(Notebook notebook) throws IOException {
@@ -120,7 +124,6 @@ public class Storage {
      * @throws IOException If an error occurs while writing to the file.
      */
     public void clear() throws IOException {
-
         Files.write(this.filePath, new ArrayList<String>());
     }
 }

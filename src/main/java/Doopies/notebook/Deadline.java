@@ -7,10 +7,15 @@ import doopies.util.DateFormat;
 import doopies.util.Parser;
 
 /**
- * Represents a deadline task in the doopies.userinterface.Doopies application.
+ * Represents a deadline task in the {@code Doopies} application.
  * <p>
- *     A deadline task contains a description and a due date. It can be marked as done or not done and supports
- *     a string representation that includes its due date.
+ * A deadline task contains:
+ * <ul>
+ *     <li>A description of the task.</li>
+ *     <li>A due date, stored as a {@code String} and optionally as a {@link LocalDateTime}.</li>
+ *     <li>A completion status (marked as done or not done).</li>
+ * </ul>
+ * The due date can be formatted for display and parsed for date-based operations.
  * </p>
  */
 public class Deadline extends Task {
@@ -18,10 +23,10 @@ public class Deadline extends Task {
     private final Optional<LocalDateTime> dueDate;
 
     /**
-     * Constructs a new deadline task with the specified description and deadline.
+     * Constructs a new {@code Deadline} task with the specified description and due date.
      *
      * @param task     The description of the deadline task.
-     * @param deadline The due date of the task, in string format.
+     * @param deadline The due date of the task in string format.
      */
     public Deadline(String task, String deadline) {
         super(task);
@@ -30,11 +35,11 @@ public class Deadline extends Task {
     }
 
     /**
-     * Constructs a new deadline task with the specified description, completion status, and deadline.
+     * Constructs a new {@code Deadline} task with the specified description, completion status, and due date.
      *
      * @param task     The description of the deadline task.
      * @param done     The completion status of the task.
-     * @param deadline The due date of the task, in string format.
+     * @param deadline The due date of the task in string format.
      */
     public Deadline(String task, boolean done, String deadline) {
         super(task, done);
@@ -43,12 +48,13 @@ public class Deadline extends Task {
     }
 
     /**
-     * Retrieves the formatted deadline date as a string.
+     * Retrieves the formatted due date as a string.
      * <p>
-     *     If the date cannot be parsed, this method returns the raw string provided by the user.
+     * If the date is successfully parsed, it is returned in a formatted string.
+     * Otherwise, the original raw string provided by the user is returned.
      * </p>
      *
-     * @return The formatted deadline date, or the raw string if the date is invalid.
+     * @return The formatted due date, or the raw string if parsing fails.
      */
     public String getDeadline() {
         return this.dueDate.map(date ->
@@ -57,56 +63,59 @@ public class Deadline extends Task {
     }
 
     /**
-     * Retrieves the due date of the deadline task as a {@link LocalDateTime}.
+     * Retrieves the due date of the task as a {@link LocalDateTime}.
      * <p>
-     *     If the date cannot be parsed, this method returns {@link LocalDateTime#MAX}.
+     * If the date cannot be parsed, this method returns {@link LocalDateTime#MAX}.
      * </p>
      *
-     * @return The due date of the task, or {@link LocalDateTime#MAX} if the date is invalid.
+     * @return The parsed due date as a {@link LocalDateTime}, or {@link LocalDateTime#MAX} if parsing fails.
      */
     public LocalDateTime getDeadlineDateTime() {
-
         return this.dueDate.orElse(LocalDateTime.MAX);
     }
 
     /**
-     * {@inheritDoc}
+     * Marks this deadline task as completed.
      * <p>
-     *     This implementation creates and returns a new instance of the deadline task
-     *     with its completion status set to done.
+     * This method creates and returns a new instance of the deadline task with its completion status set to done.
      * </p>
+     *
+     * @return A new {@code Deadline} instance marked as done.
      */
     @Override
     public Deadline mark() {
-
         return new Deadline(this.getTask(), true, this.deadline);
     }
 
     /**
-     * {@inheritDoc}
+     * Unmarks this deadline task (sets it as not done).
      * <p>
-     *     This implementation creates and returns a new instance of the deadline task
-     *     with its completion status set to not done.
+     * This method creates and returns a new instance of the deadline task with its completion status set to not done.
      * </p>
+     *
+     * @return A new {@code Deadline} instance marked as not done.
      */
     @Override
     public Deadline unmark() {
-
         return new Deadline(this.getTask(), false, this.deadline);
     }
 
     /**
      * Returns a string representation of the deadline task.
      * <p>
-     * The string representation includes the prefix "[D]", followed by the task's
-     * completion status, description, and formatted due date.
+     * The string representation includes:
+     * <ul>
+     *     <li>The prefix "[D]" to indicate a deadline task.</li>
+     *     <li>The task's completion status.</li>
+     *     <li>The task description.</li>
+     *     <li>The formatted due date.</li>
+     * </ul>
      * </p>
      *
      * @return A formatted string representing the deadline task.
      */
     @Override
     public String toString() {
-
         return String.format("[D]%s (by: %s)", super.toString(), this.getDeadline());
     }
 }

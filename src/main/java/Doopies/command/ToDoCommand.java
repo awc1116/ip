@@ -10,19 +10,26 @@ import doopies.storage.Storage;
 import doopies.userinterface.Ui;
 
 /**
- * Represents a command to add a todo task to the notebook.
+ * Represents a command to add a to-do task to the {@link Notebook}.
  * <p>
- * The command parses the task description, creates a new {@link ToDo} task,
- * adds it to the notebook, and saves the updated notebook to storage.
+ * This command:
+ * <ul>
+ *     <li>Extracts the task description from user input.</li>
+ *     <li>Creates a new {@link ToDo} task.</li>
+ *     <li>Adds the task to the {@link Notebook}.</li>
+ *     <li>Saves the updated notebook to {@link Storage}.</li>
+ *     <li>Displays a confirmation message upon successful addition.</li>
+ * </ul>
+ * If the description is missing or invalid, an error message is displayed.
  * </p>
  */
 public class ToDoCommand extends Command {
     private final String[] cmd;
 
     /**
-     * Constructs a ToDoCommand with the specified parsed input.
+     * Constructs a {@code ToDoCommand} with the specified parsed input.
      *
-     * @param cmd The parsed input command containing the todo action and task description.
+     * @param cmd The parsed input command containing the to-do action and task description.
      */
     public ToDoCommand(String[] cmd) {
         super();
@@ -30,23 +37,27 @@ public class ToDoCommand extends Command {
     }
 
     private String translate(String[] cmd) {
-
         return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
     }
 
     /**
-     * {@inheritDoc}
+     * Executes the command to add a to-do task to the notebook.
      * <p>
-     *     This implementation adds a {@link ToDo} task to the notebook using the task description provided by the user.
-     *     If successful, the updated notebook is saved to storage, and a confirmation message is displayed.
-     *     If the description is missing or invalid, an appropriate error message is displayed.
+     * This method:
+     * <ul>
+     *     <li>Extracts the task description from user input.</li>
+     *     <li>Validates that the description is not empty.</li>
+     *     <li>Creates a new {@link ToDo} task and adds it to the {@link Notebook}.</li>
+     *     <li>Saves the updated notebook to the {@link Storage} system.</li>
+     *     <li>Displays a confirmation message to the user.</li>
+     * </ul>
+     * If the description is missing or invalid, an appropriate error message is displayed.
      * </p>
      *
-     * @param notebook The current in-memory notebook containing the list of tasks.
-     * @param ui       The user interface used to interact with the user.
-     * @param storage  The storage system used to persist the updated notebook.
-     * @return The updated notebook containing the new todo task.
-     * @throws IOException If an error occurs while saving the notebook to storage.
+     * @param notebook The current in-memory {@link Notebook} containing the list of tasks.
+     * @param ui       The {@link Ui} component used to interact with the user.
+     * @param storage  The {@link Storage} system responsible for saving the updated notebook.
+     * @return The updated {@link Notebook} containing the new to-do task.
      */
     @Override
     public Notebook execute(Notebook notebook, Ui ui, Storage storage) {
@@ -54,8 +65,7 @@ public class ToDoCommand extends Command {
             String description = translate(this.cmd);
 
             if (description.isEmpty()) {
-                throw new EmptyDescriptionException("OOPS!!! "
-                        + "The description of a todo cannot be empty.");
+                throw new EmptyDescriptionException("todo");
             }
 
             ToDo todo = new ToDo(description);

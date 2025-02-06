@@ -9,10 +9,15 @@ import doopies.storage.Storage;
 import doopies.userinterface.Ui;
 
 /**
- * Represents a command to find tasks in the notebook that match a given keyword.
+ * Represents a command to find tasks in the {@link Notebook} that match a given keyword.
  * <p>
- *     The {@code FindCommand} searches for tasks whose descriptions contain the specified keyword,
- *     displays the results to the user, and leaves the notebook unchanged.
+ * This command:
+ * <ul>
+ *     <li>Extracts the search keyword from the user input.</li>
+ *     <li>Searches for tasks in the {@link Notebook} whose descriptions contain the keyword.</li>
+ *     <li>Displays the matching tasks to the user in a formatted list.</li>
+ *     <li>Leaves the {@link Notebook} and {@link Storage} system unchanged.</li>
+ * </ul>
  * </p>
  */
 public class FindCommand extends Command {
@@ -29,21 +34,25 @@ public class FindCommand extends Command {
     }
 
     private String translate(String[] cmd) {
-
         return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
     }
 
     /**
-     * {@inheritDoc}
+     * Executes the command to search for tasks in the notebook that match the given keyword.
      * <p>
-     *     This implementation searches for tasks in the notebook whose descriptions contain the specified keyword.
-     *     The matching tasks are displayed to the user in a formatted list. The notebook and storage are not modified.
+     * This method:
+     * <ul>
+     *     <li>Retrieves a list of tasks from the {@link Notebook} that contain the specified keyword.</li>
+     *     <li>Formats and displays the matching tasks to the user.</li>
+     *     <li>Does not modify the {@link Notebook} or {@link Storage} system.</li>
+     * </ul>
+     * If no matching tasks are found, an appropriate message is displayed.
      * </p>
      *
-     * @param notebook The current in-memory notebook containing the list of tasks.
-     * @param ui       The user interface used to display the matching tasks to the user.
-     * @param storage  The storage system (not used in this command).
-     * @return The unmodified notebook.
+     * @param notebook The current in-memory {@link Notebook} containing the list of tasks.
+     * @param ui       The {@link Ui} component used to display the matching tasks to the user.
+     * @param storage  The {@link Storage} system (not used in this command).
+     * @return The unmodified {@link Notebook}.
      */
     @Override
     public Notebook execute(Notebook notebook, Ui ui, Storage storage) {

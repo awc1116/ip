@@ -10,17 +10,24 @@ import doopies.storage.Storage;
 import doopies.userinterface.Ui;
 
 /**
- * Represents a command to add an event task to the notebook.
+ * Represents a command to add an event task to the {@link Notebook}.
  * <p>
- *     The command parses the task description, start time, and end time, creates a new {@link Event} task,
- *     adds it to the notebook, and saves the updated notebook to storage.
+ * This command:
+ * <ul>
+ *     <li>Extracts the task description, start time, and end time from user input.</li>
+ *     <li>Creates a new {@link Event} task.</li>
+ *     <li>Adds the event task to the {@link Notebook}.</li>
+ *     <li>Saves the updated notebook to {@link Storage}.</li>
+ *     <li>Displays a confirmation message upon successful addition.</li>
+ * </ul>
+ * If the input format is incorrect or the description is empty, an error message is displayed.
  * </p>
  */
 public class EventCommand extends Command {
     private final String[] line;
 
     /**
-     * Constructs an EventCommand with the specified parsed input.
+     * Constructs an {@code EventCommand} with the specified parsed input.
      *
      * @param line The parsed input line containing the task description, start time, and end time.
      */
@@ -30,24 +37,27 @@ public class EventCommand extends Command {
     }
 
     private String translate(String[] cmd) {
-
         return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
     }
 
     /**
-     * {@inheritDoc}
+     * Executes the command to add an event task to the notebook.
      * <p>
-     *     This implementation adds an {@link Event} task to the notebook using the task description,
-     *     start time, and end time provided by the user. If successful, the updated notebook is saved to storage,
-     *     and a confirmation message is displayed. If the input is incomplete or invalid,
-     *     an error message is displayed.
+     * This method:
+     * <ul>
+     *     <li>Extracts the task description, start time, and end time from user input.</li>
+     *     <li>Validates that the description is not empty.</li>
+     *     <li>Creates a new {@link Event} task and adds it to the {@link Notebook}.</li>
+     *     <li>Saves the updated notebook to the {@link Storage} system.</li>
+     *     <li>Displays a confirmation message to the user.</li>
+     * </ul>
+     * If the input format is incorrect (e.g., missing start or end time), an error message is displayed.
      * </p>
      *
-     * @param notebook The current in-memory notebook containing the list of tasks.
-     * @param ui       The user interface used to interact with the user.
-     * @param storage  The storage system used to persist the updated notebook.
-     * @return The updated notebook containing the new event task.
-     * @throws IOException If an error occurs while saving the notebook to storage.
+     * @param notebook The current in-memory {@link Notebook} containing the list of tasks.
+     * @param ui       The {@link Ui} component used to interact with the user.
+     * @param storage  The {@link Storage} system responsible for saving the updated notebook.
+     * @return The updated {@link Notebook} containing the new event task.
      */
     @Override
     public Notebook execute(Notebook notebook, Ui ui, Storage storage) {
@@ -57,8 +67,7 @@ public class EventCommand extends Command {
             String to = translate(this.line[2].split(" "));
 
             if (description.isEmpty()) {
-                throw new EmptyDescriptionException("OOPS!!! "
-                        + "The description of an event cannot be empty.");
+                throw new EmptyDescriptionException("event");
             }
 
             Event event = new Event(description, from, to);

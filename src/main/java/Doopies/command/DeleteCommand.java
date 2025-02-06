@@ -9,18 +9,23 @@ import doopies.storage.Storage;
 import doopies.userinterface.Ui;
 
 /**
- * Represents a command to delete a task from the notebook.
+ * Represents a command to delete a task from the {@link Notebook}.
  * <p>
- *     The command removes a task at a specified index from the notebook, saves the updated notebook to storage,
- *     and displays a confirmation message to the user. If the index is invalid or out of bounds,
- *     an error message is displayed.
+ * This command:
+ * <ul>
+ *     <li>Retrieves the task index from the user input.</li>
+ *     <li>Removes the task at the specified index from the {@link Notebook}.</li>
+ *     <li>Updates the {@link Storage} system by saving the modified notebook.</li>
+ *     <li>Displays a confirmation message upon successful deletion.</li>
+ * </ul>
+ * If the provided index is invalid (out of bounds or not a valid integer), an appropriate error message is displayed.
  * </p>
  */
 public class DeleteCommand extends Command {
     private final String[] cmd;
 
     /**
-     * Constructs a DeleteCommand with the specified parsed input.
+     * Constructs a {@code DeleteCommand} with the specified parsed input.
      *
      * @param cmd The parsed input command containing the delete action and the task index.
      */
@@ -30,18 +35,24 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * {@inheritDoc}
+     * Executes the command to delete a task from the notebook.
      * <p>
-     *     This implementation deletes a task from the notebook at the specified index. If successful, the updated
-     *     notebook is saved to storage, and a confirmation message is displayed. If the index is invalid or not an
-     *     integer, an appropriate error message is displayed.
+     * This method:
+     * <ul>
+     *     <li>Parses the task index from user input.</li>
+     *     <li>Checks if the index is within valid bounds.</li>
+     *     <li>Retrieves the task to be deleted for confirmation.</li>
+     *     <li>Removes the task from the {@link Notebook}.</li>
+     *     <li>Persists the updated notebook to the {@link Storage} system.</li>
+     *     <li>Displays a confirmation message to the user.</li>
+     * </ul>
+     * If the provided index is invalid or not an integer, an error message is displayed.
      * </p>
      *
-     * @param notebook The current in-memory notebook containing the list of tasks.
-     * @param ui       The user interface used to interact with the user.
-     * @param storage  The storage system used to persist the updated notebook.
-     * @return The updated notebook after removing the task.
-     * @throws IOException If an error occurs while saving the notebook to storage.
+     * @param notebook The current in-memory {@link Notebook} containing the list of tasks.
+     * @param ui       The {@link Ui} used to interact with the user.
+     * @param storage  The {@link Storage} system responsible for saving the updated notebook.
+     * @return The updated {@link Notebook} after removing the task.
      */
     @Override
     public Notebook execute(Notebook notebook, Ui ui, Storage storage) {
@@ -49,7 +60,7 @@ public class DeleteCommand extends Command {
             int idx = Integer.parseInt(this.cmd[1]);
 
             if (idx > notebook.size() || idx < 1) {
-                throw new IndexOutOfBoundException(idx + " is not in your list.");
+                throw new IndexOutOfBoundException(String.valueOf(idx));
             }
 
             Task task = notebook.getTask(idx);

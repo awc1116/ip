@@ -5,34 +5,42 @@ import doopies.storage.Storage;
 import doopies.userinterface.Ui;
 
 /**
- * Represents a command to terminate the doopies.userinterface.Doopies application.
+ * Represents a command to terminate the {@code Doopies} application.
  * <p>
- *     This command signals the application to exit by displaying a farewell message to the user
- *     and closing the user interface. The in-memory notebook remains unchanged, and no modifications
- *     are made to the storage system.
+ * This command:
+ * <ul>
+ *     <li>Signals the application to exit.</li>
+ *     <li>Displays a farewell message to the user.</li>
+ *     <li>Closes any UI resources if necessary.</li>
+ *     <li>Leaves the in-memory {@link Notebook} unchanged.</li>
+ *     <li>Does not modify the {@link Storage} system.</li>
+ * </ul>
  * </p>
  */
 public class EndCommand extends Command {
 
     /**
-     * Constructs an EndCommand that signals the application to terminate.
+     * Constructs an {@code EndCommand} that signals the application to terminate.
      */
     public EndCommand() {
-
         super(true);
     }
 
     /**
-     * {@inheritDoc}
+     * Executes the command to terminate the application.
      * <p>
-     *     This implementation displays a farewell message to the user, closes the user interface,
-     *     and leaves the in-memory notebook unchanged. The storage system is not modified.
+     * This method:
+     * <ul>
+     *     <li>Displays a farewell message to the user via {@link Ui}.</li>
+     *     <li>Leaves the in-memory {@link Notebook} unchanged.</li>
+     *     <li>Does not modify the {@link Storage} system.</li>
+     * </ul>
      * </p>
      *
-     * @param notebook The current in-memory notebook containing the list of tasks (remains unchanged).
-     * @param ui       The user interface used to display the farewell message and close resources.
-     * @param storage  The storage system (not used in this command).
-     * @return The unmodified notebook.
+     * @param notebook The current in-memory {@link Notebook} containing the list of tasks (remains unchanged).
+     * @param ui       The {@link Ui} component used to display the farewell message and close resources.
+     * @param storage  The {@link Storage} system (not used in this command).
+     * @return The unmodified {@link Notebook}.
      */
     @Override
     public Notebook execute(Notebook notebook, Ui ui, Storage storage) {

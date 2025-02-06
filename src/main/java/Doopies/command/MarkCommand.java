@@ -8,17 +8,23 @@ import doopies.storage.Storage;
 import doopies.userinterface.Ui;
 
 /**
- * Represents a command to mark a task in the notebook as completed.
+ * Represents a command to mark a task in the {@link Notebook} as completed.
  * <p>
- *     This command updates the status of a specific task in the notebook to "done",
- *     saves the updated notebook to storage, and displays a confirmation message to the user.
+ * This command:
+ * <ul>
+ *     <li>Retrieves the task index from user input.</li>
+ *     <li>Marks the specified task as done.</li>
+ *     <li>Updates the {@link Storage} system by saving the modified notebook.</li>
+ *     <li>Displays a confirmation message upon successful marking.</li>
+ * </ul>
+ * If the provided index is invalid (out of bounds or not a valid integer), an appropriate error message is displayed.
  * </p>
  */
 public class MarkCommand extends Command {
     private final String[] cmd;
 
     /**
-     * Constructs a MarkCommand with the specified parsed input.
+     * Constructs a {@code MarkCommand} with the specified parsed input.
      *
      * @param cmd The parsed input command containing the mark action and the task index.
      */
@@ -28,17 +34,23 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * {@inheritDoc}
+     * Executes the command to mark a task as completed in the notebook.
      * <p>
-     *     This implementation marks the specified task in the notebook as done.
-     *     If the index is valid, the updated notebook is saved to storage, and a confirmation message is displayed.
-     *     If the index is invalid or not an integer, an appropriate error message is displayed.
+     * This method:
+     * <ul>
+     *     <li>Parses the task index from user input.</li>
+     *     <li>Checks if the index is within valid bounds.</li>
+     *     <li>Marks the specified task as done.</li>
+     *     <li>Persists the updated notebook to the {@link Storage} system.</li>
+     *     <li>Displays a confirmation message to the user.</li>
+     * </ul>
+     * If the provided index is invalid or not an integer, an error message is displayed.
      * </p>
      *
-     * @param notebook The current in-memory notebook containing the list of tasks.
-     * @param ui       The user interface used to interact with the user.
-     * @param storage  The storage system used to persist the updated notebook.
-     * @return The updated notebook with the specified task marked as done.
+     * @param notebook The current in-memory {@link Notebook} containing the list of tasks.
+     * @param ui       The {@link Ui} component used to interact with the user.
+     * @param storage  The {@link Storage} system responsible for saving the updated notebook.
+     * @return The updated {@link Notebook} with the specified task marked as done.
      * @throws IOException If an error occurs while saving the notebook to storage.
      */
     @Override
@@ -47,7 +59,7 @@ public class MarkCommand extends Command {
             int idx = Integer.parseInt(this.cmd[1]);
 
             if (idx > notebook.size() || idx < 1) {
-                throw new IndexOutOfBoundException(idx + " is not in your list.");
+                throw new IndexOutOfBoundException(String.valueOf(idx));
             }
 
             notebook = notebook.mark(idx);

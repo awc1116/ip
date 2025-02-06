@@ -8,17 +8,23 @@ import doopies.storage.Storage;
 import doopies.userinterface.Ui;
 
 /**
- * Represents a command to unmark a task as not done in the notebook.
+ * Represents a command to unmark a task as not done in the {@link Notebook}.
  * <p>
- *     The {@code UnmarkCommand} removes the completion status of a specified task in the notebook,
- *     saves the updated notebook to storage, and notifies the user.
+ * This command:
+ * <ul>
+ *     <li>Retrieves the task index from user input.</li>
+ *     <li>Marks the specified task as not done.</li>
+ *     <li>Updates the {@link Storage} system by saving the modified notebook.</li>
+ *     <li>Displays a confirmation message upon successful unmarking.</li>
+ * </ul>
+ * If the provided index is invalid (out of bounds or not a valid integer), an appropriate error message is displayed.
  * </p>
  */
 public class UnmarkCommand extends Command {
     private final String[] cmd;
 
     /**
-     * Constructs an {@code UnmarkCommand} with the specified command arguments.
+     * Constructs an {@code UnmarkCommand} with the specified parsed input.
      *
      * @param cmd The parsed command arguments containing the unmark action and the task index.
      */
@@ -28,17 +34,23 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * {@inheritDoc}
+     * Executes the command to unmark a task as not done in the notebook.
      * <p>
-     *     This implementation unmarks the specified task in the notebook, saves the updated notebook to storage,
-     *     and displays a confirmation message to the user. If the index is invalid or storage cannot be saved,
-     *     an error message is displayed.
+     * This method:
+     * <ul>
+     *     <li>Parses the task index from user input.</li>
+     *     <li>Checks if the index is within valid bounds.</li>
+     *     <li>Marks the specified task as not done.</li>
+     *     <li>Persists the updated notebook to the {@link Storage} system.</li>
+     *     <li>Displays a confirmation message to the user.</li>
+     * </ul>
+     * If the provided index is invalid or not an integer, an error message is displayed.
      * </p>
      *
-     * @param notebook The current in-memory notebook containing the list of tasks.
-     * @param ui       The user interface used to display messages to the user.
-     * @param storage  The storage system used to persist changes to the notebook.
-     * @return The updated notebook with the specified task unmarked.
+     * @param notebook The current in-memory {@link Notebook} containing the list of tasks.
+     * @param ui       The {@link Ui} component used to interact with the user.
+     * @param storage  The {@link Storage} system responsible for saving the updated notebook.
+     * @return The updated {@link Notebook} with the specified task unmarked.
      */
     @Override
     public Notebook execute(Notebook notebook, Ui ui, Storage storage) {
@@ -46,7 +58,7 @@ public class UnmarkCommand extends Command {
             int idx = Integer.parseInt(this.cmd[1]);
 
             if (idx > notebook.size() || idx < 1) {
-                throw new IndexOutOfBoundException(idx + " is not in your list.");
+                throw new IndexOutOfBoundException(String.valueOf(idx));
             }
 
             notebook = notebook.unmark(idx);

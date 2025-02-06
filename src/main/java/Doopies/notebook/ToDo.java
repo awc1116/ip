@@ -1,73 +1,79 @@
 package doopies.notebook;
 
 /**
- * Represents a todo task in the doopies.userinterface.Doopies application.
+ * Represents a to-do task in the {@code Doopies} application.
  * <p>
- * A todo task is a simple task with no specific date or time attached.
- * It can be marked as done or not done and supports a string representation.
+ * A to-do task is a simple task with:
+ * <ul>
+ *     <li>A description of the task.</li>
+ *     <li>No specific date or time attached.</li>
+ *     <li>A completion status (done or not done).</li>
+ * </ul>
+ * The task supports marking, unmarking, and a formatted string representation.
  * </p>
  */
 public class ToDo extends Task {
 
     /**
-     * Constructs a new todo task with the specified description.
+     * Constructs a new {@code ToDo} task with the specified description.
      *
-     * @param task The description of the todo task.
+     * @param task The description of the to-do task.
      */
     public ToDo(String task) {
-
         super(task);
     }
 
     /**
-     * Constructs a new todo task with the specified description and completion status.
+     * Constructs a new {@code ToDo} task with the specified description and completion status.
      *
-     * @param task The description of the todo task.
-     * @param done The completion status of the todo task.
+     * @param task The description of the to-do task.
+     * @param done The completion status of the to-do task.
      */
     public ToDo(String task, boolean done) {
-
         super(task, done);
     }
 
     /**
-     * {@inheritDoc}
+     * Marks this to-do task as completed.
      * <p>
-     *     This implementation creates and returns a new instance of the todo task
-     *     with its completion status set to done.
+     * This method creates and returns a new instance of the to-do task with its completion status set to done.
      * </p>
+     *
+     * @return A new {@code ToDo} instance marked as done.
      */
     @Override
     public ToDo mark() {
-
         return new ToDo(this.getTask(), true);
     }
 
     /**
-     * {@inheritDoc}
+     * Unmarks this to-do task (sets it as not done).
      * <p>
-     *     This implementation creates and returns a new instance of the todo task
-     *     with its completion status set to not done.
+     * This method creates and returns a new instance of the to-do task with its completion status set to not done.
      * </p>
+     *
+     * @return A new {@code ToDo} instance marked as not done.
      */
     @Override
     public ToDo unmark() {
-
         return new ToDo(this.getTask(), false);
     }
 
     /**
-     * Returns a string representation of the todo task.
+     * Returns a string representation of the to-do task.
      * <p>
-     *     The string representation includes the prefix "[T]", followed by the task's
-     *     completion status (marked as "X" if done, or " " if not done), and the task description.
+     * The string representation includes:
+     * <ul>
+     *     <li>The prefix "[T]" to indicate a to-do task.</li>
+     *     <li>The task's completion status (marked as "X" if done, or " " if not done).</li>
+     *     <li>The task description.</li>
+     * </ul>
      * </p>
      *
-     * @return A formatted string representing the todo task.
+     * @return A formatted string representing the to-do task.
      */
     @Override
     public String toString() {
-
         return String.format("[T]%s", super.toString());
     }
 }

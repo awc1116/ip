@@ -5,34 +5,42 @@ import doopies.storage.Storage;
 import doopies.userinterface.Ui;
 
 /**
- * Represents a command to display all tasks currently in the notebook.
+ * Represents a command to display all tasks currently in the {@link Notebook}.
  * <p>
- *     This command retrieves the list of tasks from the notebook and displays them to the user
- *     through the user interface. The notebook and storage are not modified by this command.
+ * This command:
+ * <ul>
+ *     <li>Retrieves all tasks stored in the {@link Notebook}.</li>
+ *     <li>Displays the list of tasks to the user via the {@link Ui}.</li>
+ *     <li>Does not modify the {@link Notebook} or {@link Storage} system.</li>
+ * </ul>
+ * If the notebook is empty, an appropriate message is displayed.
  * </p>
  */
 public class ListCommand extends Command {
 
     /**
-     * Constructs a ListCommand.
+     * Constructs a {@code ListCommand}.
      */
     public ListCommand() {
-
         super();
     }
 
     /**
-     * {@inheritDoc}
+     * Executes the command to display all tasks in the notebook.
      * <p>
-     *     This implementation retrieves all tasks from the notebook and displays them to the user.
-     *     If the notebook is empty, an appropriate message is shown. The command does not modify
-     *     the notebook or storage.
+     * This method:
+     * <ul>
+     *     <li>Retrieves all tasks from the {@link Notebook}.</li>
+     *     <li>Formats and displays them through the {@link Ui}.</li>
+     *     <li>If the notebook is empty, an appropriate message is shown.</li>
+     *     <li>Does not modify the {@link Notebook} or {@link Storage} system.</li>
+     * </ul>
      * </p>
      *
-     * @param notebook The current in-memory notebook containing the list of tasks.
-     * @param ui       The user interface used to display the list of tasks to the user.
-     * @param storage  The storage system (not used in this command).
-     * @return The unmodified notebook.
+     * @param notebook The current in-memory {@link Notebook} containing the list of tasks.
+     * @param ui       The {@link Ui} component used to display the list of tasks to the user.
+     * @param storage  The {@link Storage} system (not used in this command).
+     * @return The unmodified {@link Notebook}.
      */
     @Override
     public Notebook execute(Notebook notebook, Ui ui, Storage storage) {

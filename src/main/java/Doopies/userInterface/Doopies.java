@@ -8,8 +8,16 @@ import doopies.storage.Storage;
 import doopies.util.Parser;
 
 /**
- * Represents the main entry point for the doopies.userinterface.Doopies application.
- * Handles the initialization of the application, execution of commands, and user interaction.
+ * Represents the core logic of the {@code Doopies} application.
+ * <p>
+ * The {@code Doopies} class handles:
+ * <ul>
+ *     <li>Managing task storage.</li>
+ *     <li>Processing user commands.</li>
+ *     <li>Interacting with the user interface.</li>
+ * </ul>
+ * This class is no longer the main entry point; instead, {@link Main} serves as the application's main launcher.
+ * </p>
  */
 public class Doopies {
     private static final String FILE_PATH = "./data/doopies.txt";
@@ -18,7 +26,11 @@ public class Doopies {
     private Notebook notebook;
 
     /**
-     * Constructs a new doopies.userinterface.Doopies application instance with the specific file path for task storage.
+     * Constructs a new {@code Doopies} instance with a specific file path for task storage.
+     * <p>
+     * Initializes the {@link Storage}, {@link Ui}, and attempts to load existing tasks from the file.
+     * If loading fails, a new empty {@link Notebook} is created.
+     * </p>
      */
     public Doopies() {
         this.storage = new Storage(FILE_PATH);
@@ -30,6 +42,20 @@ public class Doopies {
         }
     }
 
+    /**
+     * Processes the user's input and returns the corresponding response.
+     * <p>
+     * The method:
+     * <ul>
+     *     <li>Parses the user input to determine the appropriate {@link Command}.</li>
+     *     <li>Executes the command, modifying the {@link Notebook} and interacting with storage as needed.</li>
+     *     <li>Retrieves the latest response message from the {@link Ui}.</li>
+     * </ul>
+     * </p>
+     *
+     * @param input The user's input command.
+     * @return The system's response message based on the executed command.
+     */
     public String getResponse(String input) {
         Command cmd = Parser.parseCommand(input);
         this.notebook = cmd.execute(this.notebook, this.ui, this.storage);

@@ -8,6 +8,17 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * Represents the main user interface window for the {@code Doopies} application.
+ * <p>
+ * This class manages user interactions, including:
+ * <ul>
+ *     <li>Displaying a scrollable dialog container.</li>
+ *     <li>Handling user input.</li>
+ *     <li>Displaying responses from {@link Doopies}.</li>
+ * </ul>
+ * </p>
+ */
 public class MainWindow extends AnchorPane {
     @FXML
     private ScrollPane scrollPane;
@@ -19,18 +30,29 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private Doopies doopies;
-
     private final Image userImage = new Image(this.getClass()
             .getResourceAsStream("/images/userImage.jpg"));
     private final Image doopiesImage = new Image(this.getClass()
             .getResourceAsStream("/images/doopies_logo.jpg"));
 
+    /**
+     * Initializes the main window.
+     * <p>
+     * Binds the scroll pane's vertical property to the height of the dialog container,
+     * ensuring that new messages are always visible.
+     * </p>
+     */
     @FXML
     public void initialize() {
         this.scrollPane.vvalueProperty().bind(
                 this.dialogContainer.heightProperty());
     }
 
+    /**
+     * Sets the {@code Doopies} instance for the UI to interact with.
+     *
+     * @param doopies The {@link Doopies} instance handling application logic.
+     */
     public void setDoopies(Doopies doopies) {
         this.doopies = doopies;
     }

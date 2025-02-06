@@ -1,92 +1,59 @@
 package doopies.userinterface;
 
-import java.util.Scanner;
-
 /**
- * Handles user interactions in the doopies.Doopies application.
+ * Handles user interactions in the {@code Doopies} application.
  * <p>
- *     The {@code Ui} class provides methods to display messages, read user input,
- *     and manage the lifecycle of the user interface.
+ * The {@code Ui} class is responsible for:
+ * <ul>
+ *     <li>Displaying messages to the user.</li>
+ *     <li>Managing welcome and goodbye messages.</li>
+ *     <li>Tracking the last displayed message.</li>
+ * </ul>
  * </p>
  */
 public class Ui {
-    private final Scanner sc;
-    private static final String LINE = "_".repeat(60);
-    private static final String INTRO = String.format("""
-                %s
-                Hello! I'm Doopies
-                What can I do for you?
-                %s
-                """,
-            LINE,
-            LINE);
-    private static final String END = String.format("""
-                %s
-                Bye. Hope to see you soon!
-                %s
-                """,
-            LINE,
-            LINE);
-
-    /**
-     * Constructs a new {@code Ui} instance and initializes the input scanner.
-     */
-    public Ui() {
-
-        this.sc = new Scanner(System.in);
-    }
+    private String message;
+    private static final String INTRO = "Hello! I'm Doopies\nWhat can I do for you?";
+    private static final String END = "Bye. Hope to see you soon!";
 
     /**
      * Displays the welcome message to the user.
+     * <p>
+     * This method sets the last message to the predefined introduction message.
+     * </p>
      */
     public void showWelcome() {
-
-        System.out.println(INTRO);
+        this.message = INTRO;
     }
 
     /**
      * Displays the goodbye message to the user.
+     * <p>
+     * This method sets the last message to the predefined exit message.
+     * </p>
      */
     public void showEnding() {
-
-        System.out.println(END);
+        this.message = END;
     }
 
     /**
-     * Displays a formatted message to the user.
+     * Displays a message to the user.
      * <p>
-     *     The message is enclosed within two horizontal lines for readability.
+     * The message is stored internally and can be retrieved using {@link #getLastMessage()}.
      * </p>
      *
      * @param message The message to display.
      */
     public void showMessage(String message) {
-
-        System.out.println(LINE + "\n" + message + "\n" + LINE);
+        this.message = message;
     }
 
     /**
-     * Reads a command entered by the user.
-     * <p>
-     *     This method waits for input from the console and returns the entered command as a string.
-     * </p>
+     * Retrieves the last displayed message.
      *
-     * @return The command entered by the user.
+     * @return The most recent message stored in the UI.
      */
-    public String readCommand() {
-
-        return this.sc.nextLine();
-    }
-
-    /**
-     * Closes the user interface.
-     * <p>
-     *     This method closes the scanner and releases any associated system resources.
-     *     It should be called when the application is shutting down.
-     * </p>
-     */
-    public void closeUi() {
-
-        this.sc.close();
+    public String getLastMessage() {
+        return this.message;
     }
 }

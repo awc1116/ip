@@ -8,14 +8,19 @@ import doopies.userinterface.Ui;
 /**
  * Represents a command for handling unrecognized or invalid user input.
  * <p>
- * This command displays an error message to the user indicating that the input is invalid.
- * The notebook and storage remain unchanged.
+ * This command:
+ * <ul>
+ *     <li>Detects and handles unknown commands entered by the user.</li>
+ *     <li>Throws and catches an {@link UnknownCommandException}.</li>
+ *     <li>Displays an error message to inform the user that the input is unrecognized.</li>
+ *     <li>Leaves the {@link Notebook} and {@link Storage} system unchanged.</li>
+ * </ul>
  * </p>
  */
 public class UnknownCommand extends Command {
 
     /**
-     * Constructs an UnknownCommand.
+     * Constructs an {@code UnknownCommand}.
      */
     public UnknownCommand() {
 
@@ -23,22 +28,25 @@ public class UnknownCommand extends Command {
     }
 
     /**
-     * {@inheritDoc}
+     * Executes the command for handling unrecognized user input.
      * <p>
-     *     This implementation throws and catches an {@link UnknownCommandException}, displaying an error message
-     *     to inform the user that the input is unrecognized. The notebook and storage are not modified.
+     * This method:
+     * <ul>
+     *     <li>Throws and catches an {@link UnknownCommandException}.</li>
+     *     <li>Displays an error message informing the user that the command is invalid.</li>
+     *     <li>Does not modify the {@link Notebook} or {@link Storage} system.</li>
+     * </ul>
      * </p>
      *
-     * @param notebook The current in-memory notebook containing the list of tasks (remains unchanged).
-     * @param ui       The user interface used to display the error message to the user.
-     * @param storage  The storage system (not used in this command).
-     * @return The unmodified notebook.
+     * @param notebook The current in-memory {@link Notebook} containing the list of tasks (remains unchanged).
+     * @param ui       The {@link Ui} component used to display the error message to the user.
+     * @param storage  The {@link Storage} system (not used in this command).
+     * @return The unmodified {@link Notebook}.
      */
     @Override
     public Notebook execute(Notebook notebook, Ui ui, Storage storage) {
         try {
-            throw new UnknownCommandException("OOPS!!! I'm sorry, "
-                    + "but I don't know what that means :-(");
+            throw new UnknownCommandException();
         } catch (UnknownCommandException e) {
             ui.showMessage(e.getMessage());
         }

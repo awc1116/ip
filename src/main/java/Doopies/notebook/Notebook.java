@@ -7,37 +7,39 @@ import java.util.List;
 /**
  * Represents a notebook that stores a list of tasks.
  * <p>
- *     This class provides immutable operations to add, mark, unmark, or delete tasks,
- *     and to retrieve tasks from the notebook. Each operation creates a new notebook instance,
- *     ensuring immutability.
+ * This class provides immutable operations to:
+ * <ul>
+ *     <li>Add, mark, unmark, or delete tasks.</li>
+ *     <li>Retrieve tasks from the notebook.</li>
+ *     <li>Search for tasks containing a specific keyword.</li>
+ * </ul>
+ * Each operation creates a new {@code Notebook} instance to ensure immutability.
  * </p>
  */
 public class Notebook {
     private final List<Task> list;
 
     /**
-     * Constructs an empty notebook.
+     * Constructs an empty {@code Notebook}.
      */
     public Notebook() {
-
         this.list = List.of();
     }
 
     /**
-     * Constructs a notebook with the specified list of tasks.
+     * Constructs a {@code Notebook} with the specified list of tasks.
      *
      * @param list The list of tasks to initialize the notebook with.
      */
     public Notebook(List<Task> list) {
-
         this.list = list;
     }
 
     /**
-     * Adds a new task to the notebook.
+     * Adds one or more tasks to the notebook.
      *
-     * @param task The task to be added to the notebook.
-     * @return A new notebook containing the added task.
+     * @param task The tasks to be added to the notebook.
+     * @return A new {@code Notebook} instance containing the added tasks.
      */
     public Notebook add(Task... task) {
         List<Task> newList = new ArrayList<>(this.list);
@@ -46,10 +48,10 @@ public class Notebook {
     }
 
     /**
-     * Marks a task at the specified index as done.
+     * Marks a task at the specified index as completed.
      *
      * @param idx The index of the task to mark as done (1-based index).
-     * @return A new notebook with the specified task marked as done.
+     * @return A new {@code Notebook} instance with the specified task marked as done.
      */
     public Notebook mark(int idx) {
         idx -= 1;
@@ -62,7 +64,7 @@ public class Notebook {
      * Unmarks a task at the specified index as not done.
      *
      * @param idx The index of the task to unmark (1-based index).
-     * @return A new notebook with the specified task unmarked.
+     * @return A new {@code Notebook} instance with the specified task unmarked.
      */
     public Notebook unmark(int idx) {
         idx -= 1;
@@ -75,7 +77,7 @@ public class Notebook {
      * Deletes a task at the specified index.
      *
      * @param idx The index of the task to delete (1-based index).
-     * @return A new notebook with the specified task removed.
+     * @return A new {@code Notebook} instance with the specified task removed.
      */
     public Notebook delete(int idx) {
         idx -= 1;
@@ -85,12 +87,11 @@ public class Notebook {
     }
 
     /**
-     * Returns the number of tasks in the notebook.
+     * Returns the total number of tasks in the notebook.
      *
-     * @return The total number of tasks in the notebook.
+     * @return The number of tasks in the notebook.
      */
     public int size() {
-
         return this.list.size();
     }
 
@@ -98,7 +99,7 @@ public class Notebook {
      * Retrieves a task at the specified index.
      *
      * @param idx The index of the task to retrieve (1-based index).
-     * @return The task at the specified index.
+     * @return The {@code Task} at the specified index.
      */
     public Task getTask(int idx) {
         idx -= 1;
@@ -111,7 +112,6 @@ public class Notebook {
      * @return A list of all tasks in the notebook.
      */
     public List<Task> getAllTasks() {
-
         return this.list;
     }
 
@@ -119,7 +119,7 @@ public class Notebook {
      * Finds all tasks in the notebook that contain the specified keyword in their description.
      *
      * @param keyword The keyword to search for in the task descriptions.
-     * @return A list of tasks that contain the specified keyword in their description.
+     * @return A list of {@code Task} objects that contain the specified keyword in their description.
      */
     public List<Task> find(String keyword) {
         List<Task> newList = new ArrayList<>();
@@ -134,7 +134,11 @@ public class Notebook {
     /**
      * Returns a string representation of the notebook.
      * <p>
-     *     The string representation contains the list of tasks, numbered sequentially.
+     * The string representation includes:
+     * <ul>
+     *     <li>A header message.</li>
+     *     <li>A sequentially numbered list of all tasks in the notebook.</li>
+     * </ul>
      * </p>
      *
      * @return A formatted string representing the notebook.
@@ -146,7 +150,7 @@ public class Notebook {
             String temp = String.format("%d. %s\n", i + 1, this.list.get(i));
             str.append(temp);
         }
-        return String.format("Here are the tasks in your list:\n%s", str.toString().stripTrailing());
-
+        return String.format("Here are the tasks in your list:\n%s",
+                str.toString().stripTrailing());
     }
 }
