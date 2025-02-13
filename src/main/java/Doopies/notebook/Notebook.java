@@ -122,13 +122,9 @@ public class Notebook {
      * @return A list of {@code Task} objects that contain the specified keyword in their description.
      */
     public List<Task> find(String keyword) {
-        List<Task> newList = new ArrayList<>();
-        for (Task task : this.list) {
-            if (task.getTask().contains(keyword)) {
-                newList.add(task);
-            }
-        }
-        return newList;
+        return this.list.stream()
+                .filter(task -> task.getTask().contains(keyword))
+                .toList();
     }
 
     /**
