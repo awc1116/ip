@@ -1,8 +1,5 @@
 package doopies.command;
 
-import java.io.IOException;
-import java.util.Arrays;
-
 import doopies.exception.EmptyDescriptionException;
 import doopies.notebook.Deadline;
 import doopies.notebook.Notebook;
@@ -33,10 +30,6 @@ public class DeadlineCommand extends Command {
     public DeadlineCommand(String[] line) {
         super();
         this.line = line;
-    }
-
-    private String translate(String[] cmd) {
-        return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
     }
 
     /**
@@ -71,7 +64,7 @@ public class DeadlineCommand extends Command {
 
             Deadline deadline = new Deadline(description, dueDate);
             notebook = notebook.add(deadline);
-            storage.save(notebook);
+            saveNotebook(notebook, storage, ui);
 
             String message = String.format("""
                             Got it. I've added this task:
@@ -81,8 +74,7 @@ public class DeadlineCommand extends Command {
                     notebook.size());
 
             ui.showMessage(message);
-        } catch (EmptyDescriptionException
-                 | IOException e) {
+        } catch (EmptyDescriptionException e) {
             ui.showMessage(e.getMessage());
         } catch (ArrayIndexOutOfBoundsException e) {
             ui.showMessage("Incorrect format for deadline.");

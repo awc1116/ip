@@ -1,8 +1,7 @@
 package doopies.command;
 
-import java.io.IOException;
-
 import doopies.exception.IndexOutOfBoundException;
+import doopies.exception.InvalidTaskTypeException;
 import doopies.notebook.Notebook;
 import doopies.notebook.Task;
 import doopies.storage.Storage;
@@ -57,15 +56,11 @@ public class DeleteCommand extends Command {
     @Override
     public Notebook execute(Notebook notebook, Ui ui, Storage storage) {
         try {
-            int idx = Integer.parseInt(this.cmd[1]);
-
-            if (idx > notebook.size() || idx < 1) {
-                throw new IndexOutOfBoundException(String.valueOf(idx));
-            }
+            int idx = parseIndex(this.cmd, notebook);
 
             Task task = notebook.getTask(idx);
             notebook = notebook.delete(idx);
-            storage.save(notebook);
+            saveNotebook(notebook, storage, ui);
 
             String message = String.format("""
                             Noted. I've removed this task:
@@ -75,10 +70,8 @@ public class DeleteCommand extends Command {
 
             ui.showMessage(message);
         } catch (IndexOutOfBoundException
-                 | IOException e) {
+                 | InvalidTaskTypeException e) {
             ui.showMessage(e.getMessage());
-        } catch (NumberFormatException e) {
-            ui.showMessage("The input is not a valid integer.");
         }
         return notebook;
     }

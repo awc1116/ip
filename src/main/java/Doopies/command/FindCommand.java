@@ -1,6 +1,5 @@
 package doopies.command;
 
-import java.util.Arrays;
 import java.util.List;
 
 import doopies.notebook.Notebook;
@@ -31,10 +30,6 @@ public class FindCommand extends Command {
     public FindCommand(String[] cmd) {
         super();
         this.keyword = translate(cmd);
-    }
-
-    private String translate(String[] cmd) {
-        return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
     }
 
     /**
