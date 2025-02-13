@@ -74,6 +74,13 @@ public class MainWindow extends AnchorPane {
         this.logoImage.setClip(clip);
     }
 
+    /**
+     * Displays the welcome message from {@code Doopies} in the dialog container.
+     * <p>
+     * This method retrieves the welcome message by sending a "start" command to the {@link Doopies} instance
+     * and adds it to the dialog container as a response dialog box.
+     * </p>
+     */
     public void showWelcomeMessage() {
         if (this.doopies != null) {
             String welcomeMessage = this.doopies.getResponse("start");

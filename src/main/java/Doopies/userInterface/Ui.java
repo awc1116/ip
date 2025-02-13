@@ -12,9 +12,9 @@ package doopies.userinterface;
  * </p>
  */
 public class Ui {
-    private String message;
     private static final String INTRO = "Hello! I'm Doopies\nWhat can I do for you?";
     private static final String END = "Bye. Hope to see you soon!";
+    private String message;
 
     /**
      * Displays the welcome message to the user.

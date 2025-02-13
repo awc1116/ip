@@ -1,4 +1,4 @@
-T | 0 | go sleep
+T | 1 | go sleep
 T | 1 | read book
 T | 1 | wake up
 D | 0 | return book | 23/02/2025, 2359

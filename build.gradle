@@ -57,14 +57,42 @@ application {
 }
 
 shadowJar {
-    archiveBaseName = "doopies"
+    archiveBaseName = "Doopies_1.0"
     archiveClassifier = null
+    archiveVersion = ""
+
+    // Include all runtime dependencies (including JavaFX) in the fat JAR
+    from {
+        project.configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
+    // Specify the main class in the manifest
+    manifest {
+        attributes(
+                "Main-Class": application.mainClass.get()
+        )
+    }
 }
 
-run{
+
+run {
     standardInput = System.in
     jvmArgs = [
             "--module-path", classpath.asPath,
             "--add-modules", "javafx.controls,javafx.fxml"
     ]
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+tasks.build {
+    dependsOn shadowJar
+}
+
+tasks.jar {
+    enabled = false
 }
