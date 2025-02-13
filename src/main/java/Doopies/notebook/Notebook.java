@@ -1,5 +1,6 @@
 package doopies.notebook;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -124,6 +125,40 @@ public class Notebook {
     public List<Task> find(String keyword) {
         return this.list.stream()
                 .filter(task -> task.getTask().contains(keyword))
+                .toList();
+    }
+
+    /**
+     * Retrieves a list of tasks that are due within the next 24 hours.
+     * This includes:
+     * <ul>
+     *     <li>All ToDo tasks (regardless of timing).</li>
+     *     <li>Deadline tasks whose due date is within the next day.</li>
+     *     <li>Event tasks whose start time is within the next day.</li>
+     * </ul>
+     *
+     * @return A list of tasks that match the criteria.
+     */
+    public List<Task> getTasksDueWithinOneDay() {
+        return this.list.stream()
+                .filter(task -> {
+                    if (task instanceof Deadline) {
+                        return ((Deadline) task).getDeadlineDateTime()
+                                .isBefore(LocalDateTime.now().plusDays(1))
+                                && ((Deadline) task).getDeadlineDateTime()
+                                .isAfter(LocalDateTime.now())
+                                && !task.isDone();
+                    } else if (task instanceof Event) {
+                        return ((Event) task).getStartDateTime()
+                                .isBefore(LocalDateTime.now().plusDays(1))
+                                && ((Event) task).getStartDateTime()
+                                .isAfter(LocalDateTime.now())
+                                && !task.isDone();
+                    } else {
+                        return task instanceof ToDo
+                                && !task.isDone();
+                    }
+                })
                 .toList();
     }
 

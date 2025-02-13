@@ -52,14 +52,20 @@ public class FindCommand extends Command {
     @Override
     public Notebook execute(Notebook notebook, Ui ui, Storage storage) {
         List<Task> tasks = notebook.find(this.keyword);
-        StringBuilder str = new StringBuilder();
+        String res;
 
-        for (int i = 0; i < tasks.size(); i++) {
-            String temp = String.format("%d. %s\n", i + 1, tasks.get(i));
-            str.append(temp);
+        if (tasks.isEmpty()) {
+            res = "There are no matching task(s) in your list.";
+        } else {
+            StringBuilder str = new StringBuilder();
+
+            for (int i = 0; i < tasks.size(); i++) {
+                String temp = String.format("%d. %s\n", i + 1, tasks.get(i));
+                str.append(temp);
+            }
+            res = String.format("Here are the matching tasks in your list:\n%s",
+                    str.toString().stripTrailing());
         }
-        String res = String.format("Here are the matching tasks in your list:\n%s",
-                str.toString().stripTrailing());
 
         ui.showMessage(res);
         return notebook;

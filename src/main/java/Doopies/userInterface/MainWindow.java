@@ -87,6 +87,10 @@ public class MainWindow extends AnchorPane {
             this.dialogContainer.getChildren().add(
                     DialogBox.getDoopiesDialog(welcomeMessage, this.doopiesImage)
             );
+            String reminders = this.doopies.getResponse("reminders");
+            this.dialogContainer.getChildren().add(
+                    DialogBox.getDoopiesDialog(reminders, this.doopiesImage)
+            );
         }
     }
 
