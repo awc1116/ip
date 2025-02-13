@@ -42,6 +42,7 @@ public class Parser {
      * @return A {@link Command} object representing the parsed command.
      */
     public static Command parseCommand(String command) {
+        assert command != null && !command.isBlank() : "Command cannot be null or empty";
         String[] line = command.split(" /");
         String[] cmd = line[0].split(" ");
 
@@ -73,10 +74,11 @@ public class Parser {
      *     or an empty {@link Optional} if the string cannot be parsed.
      */
     public static Optional<LocalDateTime> parseMyDate(String dateStr) {
+        assert dateStr != null && !dateStr.isBlank() : "Date string cannot be null or empty";
         for (DateFormat format : DateFormat.values()) {
             try {
                 return Optional.of(LocalDateTime.parse(dateStr, format.getFormatter()));
-            } catch (DateTimeParseException ignored) {
+            } catch (DateTimeParseException e) {
                 continue;
             }
         }

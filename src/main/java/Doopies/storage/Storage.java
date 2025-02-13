@@ -50,6 +50,7 @@ public class Storage {
      * @throws IOException If an error occurs while reading from or creating the file.
      */
     public Notebook load() throws IOException {
+        assert this.filePath != null : "File path should not be null";
         if (Files.notExists(this.filePath)) {
             Files.createDirectories(this.filePath.getParent());
             Files.createFile(this.filePath);
