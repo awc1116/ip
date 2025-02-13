@@ -1,8 +1,5 @@
 package doopies.command;
 
-import java.io.IOException;
-import java.util.Arrays;
-
 import doopies.exception.EmptyDescriptionException;
 import doopies.notebook.Notebook;
 import doopies.notebook.ToDo;
@@ -36,10 +33,6 @@ public class ToDoCommand extends Command {
         this.cmd = cmd;
     }
 
-    private String translate(String[] cmd) {
-        return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
-    }
-
     /**
      * Executes the command to add a to-do task to the notebook.
      * <p>
@@ -70,7 +63,7 @@ public class ToDoCommand extends Command {
 
             ToDo todo = new ToDo(description);
             notebook = notebook.add(todo);
-            storage.save(notebook);
+            saveNotebook(notebook, storage, ui);
 
             String message = String.format("""
                             Got it. I've added this task:
@@ -79,8 +72,7 @@ public class ToDoCommand extends Command {
                     todo, notebook.size());
 
             ui.showMessage(message);
-        } catch (EmptyDescriptionException
-                 | IOException e) {
+        } catch (EmptyDescriptionException e) {
             ui.showMessage(e.getMessage());
         } catch (ArrayIndexOutOfBoundsException e) {
             ui.showMessage("OOPS!!! The description of a todo cannot be empty.");

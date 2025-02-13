@@ -1,8 +1,7 @@
 package doopies.command;
 
-import java.io.IOException;
-
 import doopies.exception.IndexOutOfBoundException;
+import doopies.exception.InvalidTaskTypeException;
 import doopies.notebook.Notebook;
 import doopies.storage.Storage;
 import doopies.userinterface.Ui;
@@ -55,24 +54,18 @@ public class UnmarkCommand extends Command {
     @Override
     public Notebook execute(Notebook notebook, Ui ui, Storage storage) {
         try {
-            int idx = Integer.parseInt(this.cmd[1]);
-
-            if (idx > notebook.size() || idx < 1) {
-                throw new IndexOutOfBoundException(String.valueOf(idx));
-            }
+            int idx = parseIndex(this.cmd, notebook);
 
             notebook = notebook.unmark(idx);
-            storage.save(notebook);
+            saveNotebook(notebook, storage, ui);
 
             String message = String.format("Alright! I've unmarked this task as done:\n\t%s",
                     notebook.getTask(idx));
 
             ui.showMessage(message);
         } catch (IndexOutOfBoundException
-                 | IOException e) {
+                 | InvalidTaskTypeException e) {
             ui.showMessage(e.getMessage());
-        } catch (NumberFormatException e) {
-            ui.showMessage("The input is not a valid integer.");
         }
         return notebook;
     }

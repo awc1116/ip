@@ -1,8 +1,7 @@
 package doopies.command;
 
-import java.io.IOException;
-
 import doopies.exception.IndexOutOfBoundException;
+import doopies.exception.InvalidTaskTypeException;
 import doopies.notebook.Notebook;
 import doopies.storage.Storage;
 import doopies.userinterface.Ui;
@@ -51,29 +50,22 @@ public class MarkCommand extends Command {
      * @param ui       The {@link Ui} component used to interact with the user.
      * @param storage  The {@link Storage} system responsible for saving the updated notebook.
      * @return The updated {@link Notebook} with the specified task marked as done.
-     * @throws IOException If an error occurs while saving the notebook to storage.
      */
     @Override
     public Notebook execute(Notebook notebook, Ui ui, Storage storage) {
         try {
-            int idx = Integer.parseInt(this.cmd[1]);
-
-            if (idx > notebook.size() || idx < 1) {
-                throw new IndexOutOfBoundException(String.valueOf(idx));
-            }
+            int idx = parseIndex(this.cmd, notebook);
 
             notebook = notebook.mark(idx);
-            storage.save(notebook);
+            saveNotebook(notebook, storage, ui);
 
             String message = String.format("Alright! I've marked this task as done:\n\t%s",
                     notebook.getTask(idx));
 
             ui.showMessage(message);
         } catch (IndexOutOfBoundException
-                 | IOException e) {
+                 | InvalidTaskTypeException e) {
             ui.showMessage(e.getMessage());
-        } catch (NumberFormatException e) {
-            ui.showMessage("The input is not a valid integer.");
         }
         return notebook;
     }

@@ -1,8 +1,5 @@
 package doopies.command;
 
-import java.io.IOException;
-import java.util.Arrays;
-
 import doopies.exception.EmptyDescriptionException;
 import doopies.notebook.Event;
 import doopies.notebook.Notebook;
@@ -34,10 +31,6 @@ public class EventCommand extends Command {
     public EventCommand(String[] line) {
         super();
         this.line = line;
-    }
-
-    private String translate(String[] cmd) {
-        return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
     }
 
     /**
@@ -72,7 +65,7 @@ public class EventCommand extends Command {
 
             Event event = new Event(description, from, to);
             notebook = notebook.add(event);
-            storage.save(notebook);
+            saveNotebook(notebook, storage, ui);
 
             String message = String.format("""
                             Got it. I've added this task:
@@ -81,8 +74,7 @@ public class EventCommand extends Command {
                     event, notebook.size());
 
             ui.showMessage(message);
-        } catch (EmptyDescriptionException
-                 | IOException e) {
+        } catch (EmptyDescriptionException e) {
             ui.showMessage(e.getMessage());
         } catch (ArrayIndexOutOfBoundsException e) {
             ui.showMessage("Incorrect format for event.");

@@ -1,5 +1,10 @@
 package doopies.command;
 
+import java.io.IOException;
+import java.util.Arrays;
+
+import doopies.exception.IndexOutOfBoundException;
+import doopies.exception.InvalidTaskTypeException;
 import doopies.notebook.Notebook;
 import doopies.storage.Storage;
 import doopies.userinterface.Ui;
@@ -17,24 +22,6 @@ import doopies.userinterface.Ui;
  * </p>
  */
 public abstract class Command {
-    private final boolean exit;
-
-    protected Command() {
-        this.exit = false;
-    }
-
-    protected Command(boolean exit) {
-        this.exit = exit;
-    }
-
-    /**
-     * Checks whether this command signals the application to terminate.
-     *
-     * @return {@code true} if the command signals the application to terminate; {@code false} otherwise.
-     */
-    public boolean isExit() {
-        return this.exit;
-    }
 
     /**
      * Executes the command.
@@ -54,4 +41,36 @@ public abstract class Command {
      * @return The updated {@link Notebook} after executing the command.
      */
     public abstract Notebook execute(Notebook notebook, Ui ui, Storage storage);
+
+    protected int parseIndex(String[] cmd, Notebook notebook) throws
+            IndexOutOfBoundException, InvalidTaskTypeException {
+        if (cmd.length < 2) {
+            throw new InvalidTaskTypeException("No index provided.");
+        }
+
+        int idx;
+        try {
+            idx = Integer.parseInt(cmd[1]);
+        } catch (NumberFormatException e) {
+            throw new IndexOutOfBoundException(cmd[1]);
+        }
+
+        if (idx < 1 || idx > notebook.size()) {
+            throw new IndexOutOfBoundException(String.valueOf(idx));
+        }
+
+        return idx;
+    }
+
+    protected void saveNotebook(Notebook notebook, Storage storage, Ui ui) {
+        try {
+            storage.save(notebook);
+        } catch (IOException e) {
+            ui.showMessage("Failed to save tasks: " + e.getMessage());
+        }
+    }
+
+    protected String translate(String[] cmd) {
+        return String.join(" ", Arrays.copyOfRange(cmd, 1, cmd.length));
+    }
 }

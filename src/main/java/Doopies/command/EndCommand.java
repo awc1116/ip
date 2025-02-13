@@ -23,7 +23,7 @@ public class EndCommand extends Command {
      * Constructs an {@code EndCommand} that signals the application to terminate.
      */
     public EndCommand() {
-        super(true);
+        super();
     }
 
     /**
