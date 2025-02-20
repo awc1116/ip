@@ -1,5 +1,5 @@
-T | 1 | go sleep
+T | 0 | go sleep
 T | 1 | read book
 T | 1 | wake up
-E | 1 | cs2103 tut | Feb 14 2025, 09:00 am | Feb 14 2025, 10:00 am
+E | 0 | cs2103 tut | Feb 14 2025, 09:00 am | Feb 14 2025, 10:00 am
 D | 0 | return book | Feb 14 2025, 07:00 pm

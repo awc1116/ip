@@ -11,6 +11,7 @@ import doopies.command.DeleteCommand;
 import doopies.command.EndCommand;
 import doopies.command.EventCommand;
 import doopies.command.FindCommand;
+import doopies.command.HelpCommand;
 import doopies.command.ListCommand;
 import doopies.command.MarkCommand;
 import doopies.command.RemindersCommand;
@@ -60,6 +61,7 @@ public class Parser {
         case "event" -> new EventCommand(line);
         case "start" -> new StartCommand();
         case "reminders" -> new RemindersCommand();
+        case "help" -> new HelpCommand();
         default -> new UnknownCommand();
         };
     }
