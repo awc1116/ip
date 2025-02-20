@@ -12,26 +12,35 @@
             prefHeight="600.0" prefWidth="400.0"
             xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="doopies.userinterface.MainWindow">
+            fx:controller="doopies.userinterface.MainWindow"
+            stylesheets="@../css/styles.css"> <!-- Link CSS file -->
+
+    <!-- Background Image -->
+    <ImageView fx:id="backgroundImageView"
+               fitWidth="400.0"
+               fitHeight="600.0"
+               preserveRatio="false"
+               AnchorPane.topAnchor="0.0"
+               AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="0.0"
+               AnchorPane.rightAnchor="0.0"/>
 
     <!-- Title Bar -->
     <HBox fx:id="titleBar" alignment="CENTER_LEFT" spacing="10" prefHeight="50.0" prefWidth="400.0"
-          AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-          style="-fx-background-color: #f0f0f0; -fx-padding: 5 10 5 10;">
+          AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 
         <!-- Push Title to Center -->
         <HBox HBox.hgrow="ALWAYS" alignment="CENTER">
-            <Label fx:id="titleLabel" text="Doopies"
-                   style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+            <Label fx:id="titleLabel" text="Doopies"/>
         </HBox>
 
-        <!-- Logo (Properly Positioned) -->
+        <!-- Logo -->
         <ImageView fx:id="logoImage" fitHeight="50" fitWidth="50"
                    pickOnBounds="true"
                    preserveRatio="true"/>
     </HBox>
 
-    <!-- ScrollPane for Messages (Shifted Down) -->
+    <!-- ScrollPane for Messages -->
     <ScrollPane fx:id="scrollPane"
                 fitToWidth="true"
                 hbarPolicy="NEVER"
@@ -45,7 +54,6 @@
               spacing="10"
               VBox.vgrow="ALWAYS"/>
     </ScrollPane>
-
 
     <!-- User Input -->
     <TextField fx:id="userInput" onAction="#handleUserInput"

@@ -47,6 +47,10 @@ public class DialogBox extends HBox {
 
         this.dialog.setText(text);
 
+        this.setupDisplayPicture(img);
+    }
+
+    private void setupDisplayPicture(Image img) {
         this.displayPicture.setImage(img);
         this.displayPicture.setFitWidth(76);
         this.displayPicture.setFitHeight(76);

@@ -13,7 +13,7 @@ package doopies.notebook;
  */
 public abstract class Task {
     private final String task;
-    private final boolean done;
+    private final boolean isDone;
 
     /**
      * Constructs a new {@code Task} with the specified description and an initial status of not done.
@@ -22,18 +22,18 @@ public abstract class Task {
      */
     Task(String task) {
         this.task = task;
-        this.done = false;
+        this.isDone = false;
     }
 
     /**
      * Constructs a new {@code Task} with the specified description and completion status.
      *
      * @param task The description of the task.
-     * @param done The completion status of the task.
+     * @param isDone The completion status of the task.
      */
-    Task(String task, boolean done) {
+    Task(String task, boolean isDone) {
         this.task = task;
-        this.done = done;
+        this.isDone = isDone;
     }
 
     /**
@@ -42,7 +42,7 @@ public abstract class Task {
      * @return {@code true} if the task is marked as done, otherwise {@code false}.
      */
     public boolean isDone() {
-        return this.done;
+        return this.isDone;
     }
 
     /**
@@ -91,7 +91,7 @@ public abstract class Task {
     @Override
     public String toString() {
         return String.format("[%s] %s",
-                this.done ? "X" : " ",
+                this.isDone ? "X" : " ",
                 this.task);
     }
 }

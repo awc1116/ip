@@ -1,0 +1,36 @@
+/* ====== General Dialog Box Styles ====== */
+.dialog-box {
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-background-radius: 10px;
+}
+
+/* ====== User Message Styles ====== */
+.user-dialog {
+    -fx-background-color: #DCF8C6; /* Light green (WhatsApp-like) */
+    -fx-background-radius: 15px;
+    -fx-padding: 10px;
+    -fx-text-fill: black;
+    -fx-alignment: TOP_RIGHT;
+}
+
+/* ====== Bot Message Styles ====== */
+.bot-dialog {
+    -fx-background-color: cyan;
+    -fx-background-radius: 15px;
+    -fx-padding: 10px;
+    -fx-text-fill: purple;
+    -fx-alignment: TOP_LEFT;
+}
+
+/* ====== Display Picture Styles ====== */
+.display-picture {
+    -fx-border-radius: 50%;
+    -fx-border-color: transparent;
+}
+
+/* ====== Text Label Styling ====== */
+.label {
+    -fx-font-size: 14px;
+    -fx-font-family: "Calibri Bold";
+}
