@@ -1,26 +1,28 @@
-# Duke project template
+# Doopies
+>[“You don’t need a new plan for next year. You need a commitment.” – Seth Godin](https://dansilvestre.com/productivity-quotes/#4_%E2%80%9CYou_dont_need_a_new_plan_for_next_year_You_need_a_commitment%E2%80%9D_%E2%80%93_Seth_Godin)
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
 
-## Setting up in Intellij
+### Doopies help you to note down your plans. It's
+- Text-based
+- Easy to learn
+- ~~FASR~~ SUPER FAST to use
 
-Prerequisites: JDK 17, update Intellij to the most recent version.
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 17** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-1. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+### All you need to do is,
+1. Download it from [here](https://github.com/awc1116/ip/releases/tag/A-Jar).
+2. Copy the jar file into an empty folder.
+3. Open a command window in that folder.
+4. Run the command `java -jar "{filename}.jar"` e.g. 'java - jar "doopies.jar"` (i.e., run the command in the same folder as the jar file).
+5. Add your tasks.
+6. Let it manage your tasks for you :grin:
+> [!NOTE]
+> The double quotes around the filename in the `java -jar "{filename}.jar"` is not normally needed, but it is needed if the filename contains special characters such as `spaces` or `[`.
 
-**Warning:** Keep the `src\main\java` folder as the root folder for Java files (i.e., don't rename those folders or move Java files to another folder outside of this folder path), as this is the default location some tools (e.g., Gradle) expect to find Java files.
+
+### And it is **FREE**
+
+
+### Features:
+- [x] Managing tasks
+- [x] Managing deadlines
+- [x] Managing reminders 
