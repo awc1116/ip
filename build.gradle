@@ -59,7 +59,6 @@ application {
 shadowJar {
     archiveBaseName = "Doopies"
     archiveClassifier = null
-    archiveVersion = "2.0"
 }
 
 
