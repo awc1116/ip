@@ -12,7 +12,7 @@ public class DeadlineTest {
     @Test
     void testDeadlineCreation() {
         Deadline deadline = new Deadline("return book", "31/1/2025 2359");
-        assertEquals("[D][ ] return book (by: Jan 31 2025, 11:59 pm)", deadline.toString());
+        assertEquals("[D][ ] return book (by: 31 Jan 2025, 11:59 pm)", deadline.toString());
     }
 
     @Test
@@ -22,7 +22,7 @@ public class DeadlineTest {
 
         assertNotSame(deadline, markedDeadline);
         assertTrue(markedDeadline.isDone());
-        assertEquals("[D][X] return book (by: Jan 31 2025, 11:59 pm)", markedDeadline.toString());
+        assertEquals("[D][X] return book (by: 31 Jan 2025, 11:59 pm)", markedDeadline.toString());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class DeadlineTest {
 
         assertNotSame(markedDeadline, unmarkedDeadline);
         assertFalse(unmarkedDeadline.isDone());
-        assertEquals("[D][ ] return book (by: Jan 31 2025, 11:59 pm)", unmarkedDeadline.toString());
+        assertEquals("[D][ ] return book (by: 31 Jan 2025, 11:59 pm)", unmarkedDeadline.toString());
     }
 
     @Test

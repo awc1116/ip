@@ -12,7 +12,7 @@ public class EventTest {
     @Test
     void testEventCreation() {
         Event event = new Event("meeting", "24/1/2025 1400", "24/1/2025 1600");
-        assertEquals("[E][ ] meeting (from: Jan 24 2025, 02:00 pm to: Jan 24 2025, 04:00 pm)", event.toString());
+        assertEquals("[E][ ] meeting (from: 24 Jan 2025, 02:00 pm to: 24 Jan 2025, 04:00 pm)", event.toString());
     }
 
     @Test
@@ -22,7 +22,7 @@ public class EventTest {
 
         assertNotSame(event, markedEvent);
         assertTrue(markedEvent.isDone());
-        assertEquals("[E][X] meeting (from: Jan 24 2025, 02:00 pm to: Jan 24 2025, 04:00 pm)", markedEvent.toString());
+        assertEquals("[E][X] meeting (from: 24 Jan 2025, 02:00 pm to: 24 Jan 2025, 04:00 pm)", markedEvent.toString());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class EventTest {
 
         assertNotSame(markedEvent, unmarkedEvent);
         assertFalse(unmarkedEvent.isDone());
-        assertEquals("[E][ ] meeting (from: Jan 24 2025, 02:00 pm to: Jan 24 2025, 04:00 pm)",
+        assertEquals("[E][ ] meeting (from: 24 Jan 2025, 02:00 pm to: 24 Jan 2025, 04:00 pm)",
                 unmarkedEvent.toString());
     }
 

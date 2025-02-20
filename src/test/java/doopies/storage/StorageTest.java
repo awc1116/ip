@@ -42,9 +42,9 @@ public class StorageTest {
 
         assertEquals(3, loadedNotebook.size());
         assertEquals("[T][ ] read book", loadedNotebook.getTask(1).toString());
-        assertEquals("[E][ ] meeting (from: Jan 24 2025, 02:00 pm to: Jan 24 2025, 04:00 pm)",
+        assertEquals("[E][ ] meeting (from: 24 Jan 2025, 02:00 pm to: 24 Jan 2025, 04:00 pm)",
                 loadedNotebook.getTask(2).toString());
-        assertEquals("[D][ ] return book (by: Jan 31 2025, 11:59 pm)", loadedNotebook.getTask(3).toString());
+        assertEquals("[D][ ] return book (by: 31 Jan 2025, 11:59 pm)", loadedNotebook.getTask(3).toString());
     }
 
     @Test

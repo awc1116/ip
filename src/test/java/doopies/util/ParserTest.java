@@ -52,11 +52,11 @@ public class ParserTest {
         // Test valid dates
         Optional<LocalDateTime> date = Parser.parseMyDate("31/1/2025 2359");
         assertTrue(date.isPresent());
-        assertEquals("Jan 31 2025, 11:59 pm", date.get().format(DateFormat.OUTPUT_FORMAT.getFormatter()));
+        assertEquals("31 Jan 2025, 11:59 pm", date.get().format(DateFormat.OUTPUT_FORMAT.getFormatter()));
 
         date = Parser.parseMyDate("24/1/2025 1400");
         assertTrue(date.isPresent());
-        assertEquals("Jan 24 2025, 02:00 pm", date.get().format(DateFormat.OUTPUT_FORMAT.getFormatter()));
+        assertEquals("24 Jan 2025, 02:00 pm", date.get().format(DateFormat.OUTPUT_FORMAT.getFormatter()));
 
         // Test invalid date
         date = Parser.parseMyDate("invalid date");

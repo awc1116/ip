@@ -46,13 +46,13 @@ public class MainWindow extends AnchorPane {
 
     private Doopies doopies;
 
-    private final Image USER_IMAGE = new Image(this.getClass()
+    private final Image userImage = new Image(this.getClass()
             .getResourceAsStream("/images/userImage.jpg"));
 
-    private final Image DOOPIES_IMAGE = new Image(this.getClass()
+    private final Image doopiesImage = new Image(this.getClass()
             .getResourceAsStream("/images/doopies_logo.jpg"));
 
-    private final Image BACKGROUND_IMAGE = new Image(this.getClass()
+    private final Image backgroundImage = new Image(this.getClass()
             .getResourceAsStream("/images/background.jpg"));
 
 
@@ -83,7 +83,7 @@ public class MainWindow extends AnchorPane {
     }
 
     private void setupImage() {
-        this.logoImage.setImage(this.DOOPIES_IMAGE);
+        this.logoImage.setImage(this.doopiesImage);
         this.logoImage.setFitHeight(70);
         this.logoImage.setFitWidth(70);
         Circle clip = new Circle(35,
@@ -92,7 +92,7 @@ public class MainWindow extends AnchorPane {
     }
 
     private void setupBackgroundImage() {
-        this.backgroundImageView.setImage(this.BACKGROUND_IMAGE);
+        this.backgroundImageView.setImage(this.backgroundImage);
         this.backgroundImageView.setOpacity(0.3);
     }
 
@@ -107,11 +107,11 @@ public class MainWindow extends AnchorPane {
         if (this.doopies != null) {
             String welcomeMessage = this.doopies.getResponse("start");
             this.dialogContainer.getChildren().add(
-                    DialogBox.getDoopiesDialog(welcomeMessage, this.DOOPIES_IMAGE)
+                    DialogBox.getDoopiesDialog(welcomeMessage, this.doopiesImage)
             );
             String reminders = this.doopies.getResponse("reminders");
             this.dialogContainer.getChildren().add(
-                    DialogBox.getDoopiesDialog(reminders, this.DOOPIES_IMAGE)
+                    DialogBox.getDoopiesDialog(reminders, this.doopiesImage)
             );
         }
     }
@@ -130,8 +130,8 @@ public class MainWindow extends AnchorPane {
         String input = this.userInput.getText();
         String response = this.doopies.getResponse(input);
         this.dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, this.USER_IMAGE),
-                DialogBox.getDoopiesDialog(response, this.DOOPIES_IMAGE)
+                DialogBox.getUserDialog(input, this.userImage),
+                DialogBox.getDoopiesDialog(response, this.doopiesImage)
         );
         this.userInput.clear();
 

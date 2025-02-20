@@ -26,7 +26,7 @@ public class Ui {
             3) Current list will be stored in ../data/doopies.txt in chronological order
             (todo tasks will be prioritise).
             ___________________________________________________________________________________________________________
-            
+
             Add Tasks:
             1) todo task (no due date or no duration):
                command: todo {description}
@@ -35,12 +35,12 @@ public class Ui {
             2) deadline task (task with a due date):
                 command: deadline /by {DD/MM/YYYY HHmm}
                example: return book /by 20/02/2025 2359
-            
+
             3) event task (task with a period to do it):
                 command: event /from {DD/MM/YYYY HHmm} /to {DD/MM/YYYY HHmm}
                 example: event project meeting /from 21/2/2025 1400 /to /21/2/2025 1600
             ___________________________________________________________________________________________________________
-            
+
             Viewing Tasks:
             1) view all task in task list:
                 command: list
@@ -48,25 +48,25 @@ public class Ui {
             2) view all undone todo task and deadline due within 24hrs or event starting within 24hrs:
                 command: reminders
             ___________________________________________________________________________________________________________
-            
+
             Managing Tasks:
             1) mark task as done:
                 command: mark {task number on list}
-            
+
             2) unmark task as done:
                 command: unmark {task number on list}
-            
+
             3) delete task:
                 command: delete {task number on list}
             ___________________________________________________________________________________________________________
-            
+
             Miscellaneous:
             1) clear storage saved in hard disk:
                 command: clear
-            
+
             2) finding tasks using keyword(s) in task:
                 command: find {keyword(s)}
-            
+
             3) shutdown the bot (app will close a second after this command):
                 command: byes
             ___________________________________________________________________________________________________________
