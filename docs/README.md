@@ -2,7 +2,7 @@
 
 ## Product Screenshot
 
-![Doopies Screenshot](/src/main/resources/images/product_screenshot.jpg)
+![Doopies Screenshot](Ui.png  )
 
 ## Introduction
 
