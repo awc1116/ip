@@ -53,25 +53,13 @@ test {
 }
 
 application {
-    mainClass.set("doopies.userinterface.Main")
+    mainClass.set("doopies.userinterface.Launcher")
 }
 
 shadowJar {
-    archiveBaseName = "Doopies_1.0"
+    archiveBaseName = "Doopies"
     archiveClassifier = null
-    archiveVersion = ""
-
-    // Include all runtime dependencies (including JavaFX) in the fat JAR
-    from {
-        project.configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-
-    // Specify the main class in the manifest
-    manifest {
-        attributes(
-                "Main-Class": application.mainClass.get()
-        )
-    }
+    archiveVersion = "2.0"
 }
 
 

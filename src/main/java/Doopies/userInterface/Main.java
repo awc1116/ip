@@ -49,17 +49,4 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-
-    /**
-     * Launches the JavaFX application.
-     * <p>
-     * This method is automatically called when the program starts, and it invokes
-     * {@code Application.launch()} to initialize the JavaFX runtime.
-     * </p>
-     *
-     * @param args Command-line arguments passed to the application.
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
