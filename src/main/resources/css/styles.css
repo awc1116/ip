@@ -1,0 +1,67 @@
+/* ====== General Styles ====== */
+.root {
+    -fx-font-family: "Arial";
+    -fx-background-color: #f4f4f4;
+}
+
+/* ====== Background for the ScrollPane ====== */
+#scrollPane {
+    -fx-background-image: url("/images/background.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent; /* Ensures no blocking colors */
+}
+
+/* ====== Dialog Container (Chat Messages) ====== */
+#dialogContainer {
+    -fx-background-color: transparent; /* Ensures messages do not block background */
+    -fx-padding: 10px;
+}
+
+/* ====== Title Bar ====== */
+#titleBar {
+    -fx-background-color: linear-gradient(to right, #3A85C6, #3A85C6);
+        -fx-padding: 5px 10px;
+        -fx-border-width: 0px 0px 2px 0px;
+        -fx-border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ====== Title Label (App Name) ====== */
+#titleLabel {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+/* ====== Text Input Field ====== */
+#userInput {
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+
+/* ====== Send Button ====== */
+#sendButton {
+    -fx-background-color: #008CBA; /* Blue color */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+#sendButton:hover {
+    -fx-background-color: #005f73;
+}
+
+/* ====== Scroll Pane Tweaks ====== */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* ====== Hide Scroll Bar Background ====== */
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}

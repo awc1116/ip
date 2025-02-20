@@ -36,7 +36,7 @@ public enum DateFormat {
     INPUT_FORMAT_8("dd/M/yyyy HHmm"),
 
     /** Output format: "MMM dd yyyy, hh:mm a" (e.g., "Jan 31 2025, 11:59 PM"). */
-    OUTPUT_FORMAT("MMM dd yyyy, hh:mm a");
+    OUTPUT_FORMAT("dd MMM yyyy, hh:mm a");
 
     /** The {@link DateTimeFormatter} associated with the date format pattern. */
     private final DateTimeFormatter formatter;

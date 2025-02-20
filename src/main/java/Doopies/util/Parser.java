@@ -45,7 +45,7 @@ public class Parser {
      */
     public static Command parseCommand(String command) {
         assert command != null && !command.isBlank() : "Command cannot be null or empty";
-        String[] line = command.split(" /");
+        String[] line = command.trim().split(" /");
         String[] cmd = line[0].split(" ");
 
         return switch (cmd[0].toLowerCase()) {
